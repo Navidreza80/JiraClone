@@ -1,54 +1,26 @@
-"use client";
-
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import loginAction from "@/lib/actions/login.action";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useActionState, useEffect } from "react";
-import SubmitForm from "./SubmitForm";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 
-const initialState = {
-  email: "",
-  password: "",
-  success: false,
-};
-
-export function LoginForm({
+export function RegisterForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  const [state, formAction] = useActionState(loginAction, initialState);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (state?.success) {
-      router.push("/");
-      toast("Logged in successfully!");
-    }
-  }, [state, router]);
   return (
-    <form
-      action={formAction}
-      className={cn("flex flex-col gap-6", className)}
-      {...props}
-    >
+    <form className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-2xl font-bold">Login to your account</h1>
+        <h1 className="text-2xl font-bold">Create your account</h1>
         <p className="text-muted-foreground text-sm text-balance">
-          Enter your email below to login to your account
+          Enter your details below to register for an account
         </p>
       </div>
       <div className="grid gap-6">
         <div className="grid gap-3">
           <Label htmlFor="email">Email</Label>
           <Input
-            defaultValue={state.email}
             id="email"
-            name="email"
             className="shadow-none"
             type="email"
             placeholder="m@example.com"
@@ -56,25 +28,26 @@ export function LoginForm({
           />
         </div>
         <div className="grid gap-3">
-          <div className="flex items-center">
-            <Label htmlFor="password">Password</Label>
-            <a
-              href="#"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
-            >
-              Forgot your password?
-            </a>
-          </div>
+          <Label htmlFor="password">Password</Label>
           <Input
-            defaultValue={state.password}
             className="shadow-none"
             id="password"
-            name="password"
             type="password"
             required
           />
         </div>
-        <SubmitForm />
+        <div className="grid gap-3">
+          <Label htmlFor="password">Repeat Password</Label>
+          <Input
+            className="shadow-none"
+            id="password"
+            type="password"
+            required
+          />
+        </div>
+        <Button type="submit" className="w-full bg-button">
+          Register
+        </Button>
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
           <span className="bg-background text-muted-foreground relative z-10 px-2">
             Or continue with
@@ -87,17 +60,12 @@ export function LoginForm({
               fill="currentColor"
             />
           </svg>
-          Login with GitHub
+          Sign up with GitHub
         </Button>
       </div>
       <div className="text-center text-sm">
-        Don&apos;t have an account?{" "}
-        <Link
-          href="/authentication/register"
-          className="underline underline-offset-4"
-        >
-          Sign up
-        </Link>
+        Already have an account?{" "}
+        <Link href="" className="underline underline-offset-4">Sign in</Link>
       </div>
     </form>
   );
