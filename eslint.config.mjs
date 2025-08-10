@@ -7,6 +7,14 @@ const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
+  overrides: [
+    {
+      files: ["src/generated/prisma/**/*.js"],
+      rules: {
+        "@typescript-eslint/no-require": "off",
+      },
+    },
+  ],
 });
 
 const eslintConfig = [
