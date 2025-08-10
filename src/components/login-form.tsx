@@ -3,39 +3,16 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import loginAction from "@/lib/actions/login.action";
+import { login } from "@/lib/actions/auth.action";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useActionState, useEffect } from "react";
-import SubmitForm from "./SubmitForm";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-
-const initialState = {
-  email: "",
-  password: "",
-  success: false,
-};
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  const [state, formAction] = useActionState(loginAction, initialState);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (state?.success) {
-      router.push("/");
-      toast("Logged in successfully!");
-    }
-  }, [state, router]);
   return (
-    <form
-      action={formAction}
-      className={cn("flex flex-col gap-6", className)}
-      {...props}
-    >
+    <form className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="text-2xl font-bold">Login to your account</h1>
         <p className="text-muted-foreground text-sm text-balance">
@@ -46,7 +23,6 @@ export function LoginForm({
         <div className="grid gap-3">
           <Label htmlFor="email">Email</Label>
           <Input
-            defaultValue={state.email}
             id="email"
             name="email"
             className="shadow-none"
@@ -66,7 +42,6 @@ export function LoginForm({
             </a>
           </div>
           <Input
-            defaultValue={state.password}
             className="shadow-none"
             id="password"
             name="password"
@@ -74,7 +49,13 @@ export function LoginForm({
             required
           />
         </div>
-        <SubmitForm />
+        <Button
+          formAction={login}
+          type="submit"
+          className="w-full bg-button hover:bg-button/80 cursor-pointer"
+        >
+          Login
+        </Button>
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
           <span className="bg-background text-muted-foreground relative z-10 px-2">
             Or continue with
