@@ -10,5 +10,5 @@ export default async function Page() {
     redirect("/login");
   }
 
-  return <p>Hello {data.user.email}</p>;
+  return <p>Hello Redeploy {data.user.email}</p>;
 }
