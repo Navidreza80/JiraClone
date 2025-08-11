@@ -1,14 +1,15 @@
-import { redirect } from "next/navigation";
+import { AppSidebar } from "@/components/app-sidebar";
+import Header from "@/components/layout/Header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
-import { createClient } from "@/lib/supabase/server";
-
-export default async function Page() {
-  const supabase = await createClient();
-
-  const { data, error } = await supabase.auth.getUser();
-  if (error || !data?.user) {
-    redirect("/login");
-  }
-
-  return <p>Hello Redeploy {data.user.email}</p>;
+export default function Page() {
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <Header />
+        <div className="flex flex-1 flex-col gap-4 p-4"></div>
+      </SidebarInset>
+    </SidebarProvider>
+  );
 }
