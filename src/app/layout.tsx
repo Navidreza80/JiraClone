@@ -1,8 +1,11 @@
+import { AppSidebar } from "@/components/app-sidebar";
+import Header from "@/components/layout/Header";
+import { ThemeProvider } from "@/components/provider/provider";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
-import { ThemeProvider } from "@/components/provider/provider";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -22,7 +25,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${manrope.variable} ${manrope.className} antialiased`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              <Header />
+              <div className="mt-12 p-10 text-foreground font-semibold border-border">{children}</div>
+            </SidebarInset>
+          </SidebarProvider>
+        </ThemeProvider>
         <Toaster />
       </body>
     </html>
