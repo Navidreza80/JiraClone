@@ -1,9 +1,15 @@
+"use server";
+
 import AssignedToMeTab from "@/components/AssignedToMeTab";
 import ProjectCard from "@/components/common/ProjectCard";
 import StarredTab from "@/components/StarredTab";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { PrismaClient } from "../../../prisma/src/generated/prisma";
 
-export default function Page() {
+const prisma = new PrismaClient();
+export default async function Page() {
+  const workspaces = await prisma.workspace
+  
   return (
     <div className="flex flex-1 flex-wrap">
       <h1 className="w-full text-2xl font-semibold text-foreground leading-0 pb-12 border-b">
