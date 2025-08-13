@@ -1,5 +1,6 @@
 import AssignedToMeTab from "@/components/AssignedToMeTab";
 import ProjectCard from "@/components/common/ProjectCard";
+import StarredTab from "@/components/StarredTab";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Page() {
@@ -37,9 +38,7 @@ export default function Page() {
           </TabsList>
           <div className="w-full absolute border top-[37px]" />
           <AssignedToMeTab />
-          <TabsContent value="starred">
-            Make changes to your account here.
-          </TabsContent>
+          <StarredTab />
         </Tabs>
       </div>
     </div>
