@@ -13,7 +13,7 @@ import UserMenuItems from "../UserMenuItems";
 
 const Header = async () => {
   const user = await getUser();
-  const email = user.email;
+  const email = user?.email;
 
   return (
     <header className="bg-background fixed z-10 top-0 flex h-12 inset-0 items-center gap-2 border-b px-4 justify-between w-full">

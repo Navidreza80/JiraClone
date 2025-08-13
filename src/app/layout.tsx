@@ -1,7 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import Header from "@/components/layout/Header";
 import { ThemeProvider } from "@/components/provider/provider";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import { Toaster } from "sonner";
@@ -26,13 +23,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${manrope.variable} ${manrope.className} antialiased`}>
         <ThemeProvider>
-          <SidebarProvider>
-            <AppSidebar />
-            <SidebarInset>
-              <Header />
-              <div className="mt-12 p-10 text-foreground font-semibold border-border">{children}</div>
-            </SidebarInset>
-          </SidebarProvider>
+          <div>
+            {children}
+          </div>
         </ThemeProvider>
         <Toaster />
       </body>
