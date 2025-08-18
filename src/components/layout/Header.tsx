@@ -1,7 +1,6 @@
 import { getUser } from "@/lib/actions/getUser.action";
 import { TooltipTrigger } from "@radix-ui/react-tooltip";
 import { Plus, Search } from "lucide-react";
-import AppButton from "../common/button";
 import UserAvatar from "../common/UserAvatar";
 import Logo from "../Logo";
 import { SearchForm } from "../search-form";
@@ -45,7 +44,7 @@ const Header = async () => {
       <SearchForm />
 
       <div className="flex gap-2 h-8 items-center">
-        <AppButton className="h-full" icon={<Plus size={23} />} />
+        <button className="h-full button gap-2">{<Plus size={23} />} Create</button>
         <Popover>
           <PopoverTrigger>
             <div>

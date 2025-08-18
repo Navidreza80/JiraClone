@@ -1,8 +1,7 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import Header from "@/components/layout/Header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-
-export default function RootLayout({
+export default async function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
