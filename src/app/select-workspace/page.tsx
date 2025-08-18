@@ -40,7 +40,7 @@ export default async function WorkspaceSelection() {
 
         <div className="mt-6 flex justify-center">
           <Link href={"/create-workspace"}>
-            <button className="hover:bg-button/90 text-sm font-medium bg-button px-3 py-2 rounded text-white flex gap-1.5 items-center transition-all duration-300 cursor-pointer active:scale-95">
+            <button className="button gap-2">
               <Plus size={16} /> Create new workspace
             </button>
           </Link>

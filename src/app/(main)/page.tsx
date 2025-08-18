@@ -2,14 +2,14 @@
 
 import AssignedToMeTab from "@/components/AssignedToMeTab";
 import ProjectCard from "@/components/common/ProjectCard";
+import { EmptyProjects } from "@/components/NoProjects";
 import StarredTab from "@/components/StarredTab";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getProjects } from "@/lib/actions/projects.action";
-import { redirect } from "next/navigation";
 
 export default async function Page() {
   const projects = await getProjects();
-  if (!projects || !(projects.length > 0)) return <div>No Projects</div>;
+  if (!projects || !(projects.length > 0)) return <EmptyProjects />;
   return (
     <div className="flex flex-1 flex-wrap">
       <h1 className="w-full text-2xl font-semibold text-foreground leading-0 pb-12 border-b">

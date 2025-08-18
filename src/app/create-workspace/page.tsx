@@ -35,9 +35,9 @@ export default function Page() {
   return (
     <main className="flex items-center justify-center h-screen">
       <div className="w-full max-w-md">
-        <div className="bg-white rounded-2xl border p-6">
+        <div className="rounded border p-6">
           <h1 className="text-2xl font-bold mb-1">Create Workspace</h1>
-          <p className="text-sm text-gray-500 mb-6">
+          <p className="text-sm text-muted-foreground mb-6">
             Create your workspace by filling out the form below.
           </p>
 
@@ -50,7 +50,7 @@ export default function Page() {
               <input
                 id="name"
                 type="text"
-                className="w-full rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-black/80"
+                className="w-full rounded-sm border px-3 py-2 outline-none focus:ring-2 focus:ring-button"
                 placeholder="My Workspace"
                 {...register("name")}
                 aria-invalid={!!errors.name}
@@ -70,7 +70,7 @@ export default function Page() {
               <input
                 id="description"
                 type="text"
-                className="w-full rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-black/80"
+                className="w-full rounded-sm border px-3 py-2 outline-none focus:ring-2 focus:ring-button"
                 placeholder="Team Management"
                 {...register("description")}
                 aria-invalid={!!errors.description}
@@ -85,7 +85,7 @@ export default function Page() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-button px-4 py-2 text-white disabled:opacity-60 disabled:cursor-not-allowed"
+              className="button w-full justify-center gap-2"
             >
               {isSubmitting && (
                 <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
