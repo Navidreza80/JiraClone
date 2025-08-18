@@ -12,7 +12,7 @@ const data = {
   navMain: [
     {
       title: "For you",
-      url: "/for-you",
+      url: "/f",
     },
   ],
 };

@@ -1,6 +1,6 @@
-import { Workspace } from "../../../prisma/src/generated/prisma";
+import { Project } from "../../../prisma/src/generated/prisma";
 
-const ProjectCard = ({ workspace }: { workspace: Workspace }) => {
+const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <div className="w-[240px] h-[168px] border relative rounded shadow-xs">
       <div className="absolute bg-blue-200 w-6 rounded-tl rounded-bl h-full top-0 left-0" />
@@ -10,10 +10,10 @@ const ProjectCard = ({ workspace }: { workspace: Workspace }) => {
       <div className="flex flex-col space-y-3 pl-11 pr-4 p-3">
         <div className="flex flex-col">
           <span className="text-sm w-[100px] text-ellipsis whitespace-nowrap overflow-hidden">
-            {workspace.name}
+            {project.name}
           </span>
           <span className="text-xs font-medium w-[100px] whitespace-nowrap text-ellipsis overflow-hidden">
-            {workspace.description || "no description"}
+            {project.description || "no description"}
           </span>
         </div>
         <span className="text-[10px] text-muted-foreground">Quick links</span>

@@ -31502,10 +31502,10 @@ export namespace Prisma {
   }
 
   export type WorkspaceCreateInput = {
-    id: string
+    id?: string
     name: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     description?: string | null
     Project?: ProjectCreateNestedManyWithoutWorkspaceInput
     users: usersCreateNestedOneWithoutWorkspaceInput
@@ -31513,10 +31513,10 @@ export namespace Prisma {
   }
 
   export type WorkspaceUncheckedCreateInput = {
-    id: string
+    id?: string
     name: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     description?: string | null
     userId: string
     Project?: ProjectUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -31546,10 +31546,10 @@ export namespace Prisma {
   }
 
   export type WorkspaceCreateManyInput = {
-    id: string
+    id?: string
     name: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     description?: string | null
     userId: string
   }
@@ -36368,20 +36368,20 @@ export namespace Prisma {
   }
 
   export type WorkspaceCreateWithoutUsersInput = {
-    id: string
+    id?: string
     name: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     description?: string | null
     Project?: ProjectCreateNestedManyWithoutWorkspaceInput
     WorkspaceMember?: WorkspaceMemberCreateNestedManyWithoutWorkspaceInput
   }
 
   export type WorkspaceUncheckedCreateWithoutUsersInput = {
-    id: string
+    id?: string
     name: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     description?: string | null
     Project?: ProjectUncheckedCreateNestedManyWithoutWorkspaceInput
     WorkspaceMember?: WorkspaceMemberUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -36597,20 +36597,20 @@ export namespace Prisma {
   }
 
   export type WorkspaceCreateWithoutProjectInput = {
-    id: string
+    id?: string
     name: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     description?: string | null
     users: usersCreateNestedOneWithoutWorkspaceInput
     WorkspaceMember?: WorkspaceMemberCreateNestedManyWithoutWorkspaceInput
   }
 
   export type WorkspaceUncheckedCreateWithoutProjectInput = {
-    id: string
+    id?: string
     name: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     description?: string | null
     userId: string
     WorkspaceMember?: WorkspaceMemberUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -37226,20 +37226,20 @@ export namespace Prisma {
   }
 
   export type WorkspaceCreateWithoutWorkspaceMemberInput = {
-    id: string
+    id?: string
     name: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     description?: string | null
     Project?: ProjectCreateNestedManyWithoutWorkspaceInput
     users: usersCreateNestedOneWithoutWorkspaceInput
   }
 
   export type WorkspaceUncheckedCreateWithoutWorkspaceMemberInput = {
-    id: string
+    id?: string
     name: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     description?: string | null
     userId: string
     Project?: ProjectUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -37880,10 +37880,10 @@ export namespace Prisma {
   }
 
   export type WorkspaceCreateManyUsersInput = {
-    id: string
+    id?: string
     name: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     description?: string | null
   }
 
