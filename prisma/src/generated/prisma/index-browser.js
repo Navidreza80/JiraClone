@@ -325,10 +325,10 @@ exports.Prisma.TaskScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  projectId: 'projectId'
+  projectId: 'projectId',
+  status: 'status'
 };
 
 exports.Prisma.TaskAssignmentScalarFieldEnum = {
@@ -342,7 +342,9 @@ exports.Prisma.WorkspaceScalarFieldEnum = {
   id: 'id',
   name: 'name',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  description: 'description',
+  userId: 'userId'
 };
 
 exports.Prisma.WorkspaceMemberScalarFieldEnum = {
@@ -417,6 +419,14 @@ exports.aal_level = exports.$Enums.aal_level = {
   aal1: 'aal1',
   aal2: 'aal2',
   aal3: 'aal3'
+};
+
+exports.task = exports.$Enums.task = {
+  todo: 'todo',
+  in_progress: 'in_progress',
+  done: 'done',
+  idea: 'idea',
+  in_review: 'in_review'
 };
 
 exports.Prisma.ModelName = {

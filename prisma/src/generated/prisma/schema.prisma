@@ -323,6 +323,7 @@ model users {
   mfa_factors                 mfa_factors[]
   one_time_tokens             one_time_tokens[]
   sessions                    sessions[]
+  Workspace                   Workspace[]
   profiles                    profiles?
 
   @@index([instance_id])
@@ -347,10 +348,10 @@ model Task {
   id             String           @id
   title          String
   description    String?
-  status         String           @default("todo")
   createdAt      DateTime         @default(now())
   updatedAt      DateTime
   projectId      String
+  status         task             @default(idea)
   Project        Project          @relation(fields: [projectId], references: [id])
   TaskAssignment TaskAssignment[]
 
@@ -373,7 +374,10 @@ model Workspace {
   name            String
   createdAt       DateTime          @default(now())
   updatedAt       DateTime
+  description     String?           @default("")
+  userId          String            @db.Uuid
   Project         Project[]
+  users           users             @relation(fields: [userId], references: [id], onDelete: Cascade)
   WorkspaceMember WorkspaceMember[]
 
   @@schema("public")
@@ -441,4 +445,14 @@ enum one_time_token_type {
   phone_change_token
 
   @@schema("auth")
+}
+
+enum task {
+  todo
+  in_progress @map("in-progress")
+  done
+  idea
+  in_review   @map("in-review")
+
+  @@schema("public")
 }
