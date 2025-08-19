@@ -1,5 +1,5 @@
 import { getWorkspaces } from "@/lib/actions/workspaces.action";
-import { setServerCookie } from "@/lib/helper/server-cookie";
+import { getServerCookie, setServerCookie } from "@/lib/helper/server-cookie";
 import { TooltipTrigger } from "@radix-ui/react-tooltip";
 import { revalidatePath } from "next/cache";
 import { Button } from "./ui/button";
@@ -14,6 +14,7 @@ const WorkspacesMenuItems = async () => {
     await setServerCookie("workspaceId", id);
     revalidatePath("/");
   };
+  const currentWorkspace = await getServerCookie("workspaceId");
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -49,6 +50,7 @@ const WorkspacesMenuItems = async () => {
           {workspaces.map((item) => (
             <WorkspaceItem
               key={item.id}
+              currentWorkspace={currentWorkspace}
               item={item}
               handleWorkspaceSelect={handleWorkspaceSelect}
             />
