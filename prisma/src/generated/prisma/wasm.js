@@ -271,7 +271,8 @@ exports.Prisma.Sso_providersScalarFieldEnum = {
   id: 'id',
   resource_id: 'resource_id',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  disabled: 'disabled'
 };
 
 exports.Prisma.UsersScalarFieldEnum = {
