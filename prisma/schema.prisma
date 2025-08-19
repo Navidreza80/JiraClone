@@ -334,12 +334,13 @@ model users {
 }
 
 model Project {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   name        String
   description String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt()
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   workspaceId String
+  Workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 
   @@schema("public")
 }
@@ -349,7 +350,7 @@ model Task {
   title       String
   description String?
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt()
+  updatedAt   DateTime @updatedAt
   projectId   String
   status      task     @default(idea)
 
@@ -367,24 +368,27 @@ model TaskAssignment {
 }
 
 model Workspace {
-  id          String   @id @default(uuid())
-  name        String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  description String?  @default("")
-  userId      String   @db.Uuid
-  users       users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id              String            @id @default(uuid())
+  name            String
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  description     String?           @default("")
+  userId          String            @db.Uuid
+  Project         Project[]
+  users           users             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  WorkspaceMember WorkspaceMember[]
 
   @@schema("public")
 }
 
 model WorkspaceMember {
-  id          String   @id
+  id          String    @id @default(uuid())
   workspaceId String
   role        String
-  joinedAt    DateTime @default(now())
-  userId      String   @db.Uuid
-  profiles    profiles @relation(fields: [userId], references: [id])
+  joinedAt    DateTime  @default(now())
+  userId      String    @db.Uuid
+  profiles    profiles  @relation(fields: [userId], references: [id])
+  Workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 
   @@schema("public")
 }
