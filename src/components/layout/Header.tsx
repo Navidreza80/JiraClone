@@ -4,11 +4,11 @@ import { Plus, Search } from "lucide-react";
 import UserAvatar from "../common/UserAvatar";
 import Logo from "../Logo";
 import { SearchForm } from "../search-form";
-import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { SidebarTrigger } from "../ui/sidebar";
 import { Tooltip, TooltipContent } from "../ui/tooltip";
 import UserMenuItems from "../UserMenuItems";
+import WorkspacesMenuItems from "../WorkspacesMenuItems";
 
 const Header = async () => {
   const user = await getUser();
@@ -18,21 +18,7 @@ const Header = async () => {
     <header className="bg-background fixed z-10 top-0 flex h-12 inset-0 items-center gap-2 border-b px-4 justify-between w-full">
       <div className="flex gap-2 items-center">
         <SidebarTrigger />
-        <Button variant="ghost" size="icon" className="w-8 h-8 rounded">
-          <svg
-            fill="none"
-            viewBox="0 0 16 16"
-            role="presentation"
-            className="w-4 h-4"
-          >
-            <path
-              fill="currentcolor"
-              fillRule="evenodd"
-              d="M1 3a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2zm2-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM9 3a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2zm2-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM1 11a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2zm2-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5zm6 .5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2zm2-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
-        </Button>
+        <WorkspacesMenuItems />
         <span className="pl-2">
           <Logo />
         </span>
@@ -44,7 +30,9 @@ const Header = async () => {
       <SearchForm />
 
       <div className="flex gap-2 h-8 items-center">
-        <button className="h-full button gap-2">{<Plus size={23} />} Create</button>
+        <button className="h-full button gap-2">
+          {<Plus size={23} />} Create
+        </button>
         <Popover>
           <PopoverTrigger>
             <div>
