@@ -16,6 +16,14 @@ export async function getWorkspaces() {
   }
 }
 
+export async function getWorkspaceById(id: string) {
+  try {
+    return prisma.workspace.findUnique({ where: { id } });
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function createWorkspace(data: {
   description: string;
   name: string;
