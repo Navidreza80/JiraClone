@@ -1,0 +1,7 @@
+   [build]
+     command = "npm run build"
+     publish = ".next"
+     environment = { NODE_ENV = "production" }
+
+   [functions]
+     external_node_modules = ["@prisma/client"]
