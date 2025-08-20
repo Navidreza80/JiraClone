@@ -23,3 +23,16 @@ export const addMember = async (
     throw error;
   }
 };
+
+export const checkIsAdmin = async (workspaceId: string) => {
+  const user = await getUser();
+  if (!user) return;
+  try {
+    return await prisma.workspaceMember.findMany({
+      where: { workspaceId, role: "Admin", userId: user.id },
+      select: { role: true },
+    });
+  } catch (error) {
+    throw error;
+  }
+};
