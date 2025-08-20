@@ -11,7 +11,6 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import User from "./SVGs/User";
@@ -20,6 +19,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "./ui/collapsible";
+import Rocket from "./SVGs/Rocket";
 
 const data = {
   navMain: [
@@ -32,7 +32,7 @@ const data = {
     {
       title: "Projects",
       url: "/projects",
-      icon: <User />,
+      icon: <Rocket />,
       items: [
         {
           title: "More projects",
@@ -79,28 +79,42 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               key={item.title}
               title={item.title}
               defaultOpen
-              className="group/collapsible"
+              className="group/collapsible p-0 select-none"
             >
-              <SidebarGroup>
+              <SidebarGroup className="p-0">
                 <SidebarGroupLabel
                   asChild
-                  className="group/label text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sm"
+                  className="group/label text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sm p-0"
                 >
-                  <CollapsibleTrigger>
-                    {item.title}{" "}
-                    <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                  <CollapsibleTrigger
+                    className={`py-2 px-0 text-foreground ${
+                      pathname === item.url
+                        ? "bg-button/10 text-button hover:bg-button/25 hover:text-button"
+                        : ""
+                    }`}
+                    asChild
+                  >
+                    <div className="w-full flex items-center cursor-pointer gap-2">
+                      <span
+                        className={`h-[12px] w-[2px] ${
+                          pathname === item.url ? "bg-button" : "bg-transparent"
+                        }`}
+                      ></span>
+                      {item.icon}
+                      <span className="font-semibold">{item.title}</span>
+                    </div>
                   </CollapsibleTrigger>
                 </SidebarGroupLabel>
                 <CollapsibleContent>
                   <SidebarGroupContent>
                     <SidebarMenu>
                       {item.items.map((item) => (
-                        <SidebarMenuItem key={item.title}>
+                        <SidebarMenuItem className="ml-6" key={item.title}>
                           <SidebarMenuButton
                             asChild
                             isActive={pathname == "projects" ? true : false}
                           >
-                            <a href={item.url}>{item.title}</a>
+                            <Link href={item.url}>{item.title}</Link>
                           </SidebarMenuButton>
                         </SidebarMenuItem>
                       ))}
