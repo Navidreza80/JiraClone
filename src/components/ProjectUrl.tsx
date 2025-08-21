@@ -1,10 +1,12 @@
+"use server";
 import { MoreHorizontal } from "lucide-react";
 import { Project } from "../../prisma/src/generated/prisma";
+import { DeleteProjectDialog } from "./DeleteProject";
+import { EditProjectDialog } from "./EditProject";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-import { EditProjectDialog } from "./EditProject";
 
-const ProjectUrl = ({ project }: { project: Project }) => {
+const ProjectUrl = async ({ project }: { project: Project }) => {
   return (
     <Popover>
       <PopoverTrigger className="w-6 h-6 aspect-square rounded hover:bg-muted flex items-center justify-center">
@@ -21,7 +23,10 @@ const ProjectUrl = ({ project }: { project: Project }) => {
       </PopoverTrigger>
       <PopoverContent className="w-[139px] text-sm rounded p-0">
         <EditProjectDialog project={project} />
-        <p className="py-2">Delete project</p>
+        <DeleteProjectDialog
+          projectId={project.id}
+          workspaceId={project.workspaceId}
+        />
       </PopoverContent>
     </Popover>
   );
