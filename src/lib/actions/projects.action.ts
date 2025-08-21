@@ -45,6 +45,17 @@ export async function getProjects(search?: string) {
   return getCachedProjects(workspaceId, search);
 }
 
+export async function getProjectById(id: string) {
+  try {
+    return prisma.project.findUnique({
+      where: { id },
+      include: { Workspace: true },
+    });
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function createProject(data: {
   name: string;
   description?: string;
@@ -65,9 +76,12 @@ type ProjectWithoutTimestamps = Omit<Project, "createdAt" | "updatedAt">;
 
 export async function updateProject(data: ProjectWithoutTimestamps) {
   try {
-    const isAdmin = await checkIsAdmin(data.workspaceId);
+    const isAdmin = await checkIsAdmin();
     if (!isAdmin)
-      return { message: "You cannot access to this workspace", success: false };
+      return {
+        message: "You cannot access to this workspace.",
+        success: false,
+      };
     const project = prisma.project.update({
       where: { id: data.id },
       data: {
@@ -76,23 +90,34 @@ export async function updateProject(data: ProjectWithoutTimestamps) {
       },
     });
     revalidateTag("projects");
-    return { data: project, success: true };
-  } catch (error) {
-    return { message: error, success: false };
+    return {
+      data: project,
+      success: true,
+      message: "Project updated successfully!",
+    };
+  } catch {
+    return { message: "Failed to update project.", success: false };
   }
 }
 
-export async function deleteProject(id: string, workspaceId: string) {
+export async function deleteProject(id: string) {
   try {
-    const isAdmin = await checkIsAdmin(workspaceId);
+    const isAdmin = await checkIsAdmin();
     if (!isAdmin)
-      return { message: "You cannot access to this workspace", success: false };
+      return {
+        message: "You cannot access to this workspace.",
+        success: false,
+      };
     const project = prisma.project.delete({
       where: { id: id },
     });
     revalidateTag("projects");
-    return { data: project, success: true };
-  } catch (error) {
-    return { message: error, success: false };
+    return {
+      data: project,
+      success: true,
+      message: "Project deleted successfully!",
+    };
+  } catch {
+    return { message: "Failed to delete project.", success: false };
   }
 }

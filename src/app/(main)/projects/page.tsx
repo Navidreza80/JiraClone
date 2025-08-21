@@ -18,9 +18,20 @@ interface ProjectsProps {
 }
 
 const Projects = async ({ searchParams }: ProjectsProps) => {
-  const rawData = await getProjects(searchParams?.search || "");
+  const params = await searchParams;
+  const rawData = await getProjects(params?.search);
   const data = rawData.map((item) => ({
     ...item,
+    name: (
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded flex items-center justify-center text-white bg-button">
+          {item.name.slice(0, 1)}
+        </div>
+        <Link href={`/projects/${item.id}`} className="text-button underline">
+          {item.name}
+        </Link>
+      </div>
+    ),
     lead: (
       <div className="flex items-center gap-2">
         <div className="w-7 h-7 rounded-full bg-button text-white flex items-center justify-center">

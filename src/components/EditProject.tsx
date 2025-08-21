@@ -56,7 +56,7 @@ export function EditProjectDialog({ project }: EditProjectDialogProps) {
     if (updatedProject.success) {
       toast.success("Project updated successfully!");
     } else {
-      toast.error("failed to update project.");
+      toast.error("Failed to update project.");
     }
   };
 

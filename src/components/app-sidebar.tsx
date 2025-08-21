@@ -20,6 +20,7 @@ import {
   CollapsibleTrigger,
 } from "./ui/collapsible";
 import Rocket from "./SVGs/Rocket";
+import Members from "./SVGs/Members";
 
 const data = {
   navMain: [
@@ -40,6 +41,7 @@ const data = {
         },
       ],
     },
+    { title: "Members", url: "/members", icon: <Members /> },
   ],
 };
 

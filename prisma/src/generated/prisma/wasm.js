@@ -356,6 +356,12 @@ exports.Prisma.WorkspaceMemberScalarFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.InviteLinkScalarFieldEnum = {
+  id: 'id',
+  workspaceId: 'workspaceId',
+  userId: 'userId'
+};
+
 exports.Prisma.ProfilesScalarFieldEnum = {
   id: 'id',
   username: 'username',
@@ -452,6 +458,7 @@ exports.Prisma.ModelName = {
   TaskAssignment: 'TaskAssignment',
   Workspace: 'Workspace',
   WorkspaceMember: 'WorkspaceMember',
+  InviteLink: 'InviteLink',
   profiles: 'profiles'
 };
 

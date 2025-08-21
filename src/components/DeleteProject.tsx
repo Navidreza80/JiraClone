@@ -15,22 +15,15 @@ import { FileWarning } from "lucide-react";
 import * as React from "react";
 import { toast } from "sonner";
 
-export function DeleteProjectDialog({
-  projectId,
-  workspaceId,
-}: {
-  projectId: string;
-  workspaceId: string;
-}) {
+export function DeleteProjectDialog({ projectId }: { projectId: string }) {
   const [loading, setLoading] = React.useState(false);
 
   const handleDelete = async () => {
     try {
       setLoading(true);
-      const res = await deleteProject(projectId, workspaceId);
+      const res = await deleteProject(projectId);
       if (res.success) toast.success("Project deleted successfully.");
-    } catch {
-      toast.error("Failed to delete project!");
+      toast.error(res.message);
     } finally {
       setLoading(false);
     }

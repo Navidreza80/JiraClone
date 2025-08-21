@@ -325,6 +325,7 @@ model users {
   mfa_factors                 mfa_factors[]
   one_time_tokens             one_time_tokens[]
   sessions                    sessions[]
+  inviteLinks                 InviteLink[]
   Workspace                   Workspace[]
   profiles                    profiles?
 
@@ -374,6 +375,7 @@ model Workspace {
   updatedAt       DateTime          @updatedAt
   description     String?           @default("")
   userId          String            @db.Uuid
+  inviteLinks     InviteLink?
   Project         Project[]
   users           users             @relation(fields: [userId], references: [id], onDelete: Cascade)
   WorkspaceMember WorkspaceMember[]
@@ -388,6 +390,16 @@ model WorkspaceMember {
   joinedAt    DateTime  @default(now())
   userId      String    @db.Uuid
   profiles    profiles  @relation(fields: [userId], references: [id])
+  Workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@schema("public")
+}
+
+model InviteLink {
+  id          String    @id @default(uuid())
+  workspaceId String    @unique
+  userId      String    @db.Uuid
+  user        users     @relation(fields: [userId], references: [id], onDelete: Cascade)
   Workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 
   @@schema("public")
