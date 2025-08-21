@@ -2,8 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { updateProject } from "@/lib/actions/projects.action";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import * as z from "zod";
 import { Project } from "../../prisma/src/generated/prisma";
 import {
@@ -15,10 +17,6 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { Textarea } from "./ui/textarea";
-import { updateProject } from "@/lib/actions/projects.action";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { useState } from "react";
 
 const projectSchema = z.object({
   name: z.string().min(3, "Name is too short").max(15, "Name is too long"),
@@ -36,8 +34,6 @@ interface EditProjectDialogProps {
 }
 
 export function EditProjectDialog({ project }: EditProjectDialogProps) {
-  const [editModal, setEditModal] = useState(false);
-  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -58,17 +54,15 @@ export function EditProjectDialog({ project }: EditProjectDialogProps) {
       workspaceId: project.workspaceId,
     });
     if (updatedProject.success) {
-      setEditModal(false);
       toast.success("Project updated successfully!");
-      router.refresh();
     } else {
       toast.error("failed to update project.");
     }
   };
 
   return (
-    <Dialog open={editModal}>
-      <DialogTrigger onClick={() => setEditModal(true)} asChild>
+    <Dialog>
+      <DialogTrigger asChild>
         <p className="py-2 px-4 hover:bg-muted transition-all duration-100 cursor-pointer w-full whitespace-nowrap">
           Edit project
         </p>
@@ -100,9 +94,9 @@ export function EditProjectDialog({ project }: EditProjectDialogProps) {
             )}
           </div>
 
-          <DialogFooter className="w-full flex justify-start">
+          <DialogFooter className="w-full flex justify-start sm:justify-start">
             <Button
-              className="bg-primary"
+              className="bg-button rounded hover:bg-button-hover cursor-pointer"
               type="submit"
               disabled={isSubmitting}
             >
