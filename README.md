@@ -73,6 +73,7 @@ npm run start # Run the production build locally
 
 ## Project Structure
 
+```bash
 JiraClone/
 ├── prisma/                # Schema & migrations setup
 ├── public/                # Static files (images, fonts, etc.)
@@ -86,7 +87,7 @@ JiraClone/
 ├── eslint.config.mjs
 ├── postcss.config.mjs
 └── next.config.ts
-
+```
 
 ## Contributing
 
