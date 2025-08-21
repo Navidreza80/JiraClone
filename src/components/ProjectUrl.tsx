@@ -23,10 +23,7 @@ const ProjectUrl = async ({ project }: { project: Project }) => {
       </PopoverTrigger>
       <PopoverContent className="w-[139px] text-sm rounded p-0">
         <EditProjectDialog project={project} />
-        <DeleteProjectDialog
-          projectId={project.id}
-          workspaceId={project.workspaceId}
-        />
+        <DeleteProjectDialog projectId={project.id} />
       </PopoverContent>
     </Popover>
   );

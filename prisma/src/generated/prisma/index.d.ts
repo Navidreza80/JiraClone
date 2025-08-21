@@ -143,6 +143,11 @@ export type Workspace = $Result.DefaultSelection<Prisma.$WorkspacePayload>
  */
 export type WorkspaceMember = $Result.DefaultSelection<Prisma.$WorkspaceMemberPayload>
 /**
+ * Model InviteLink
+ * 
+ */
+export type InviteLink = $Result.DefaultSelection<Prisma.$InviteLinkPayload>
+/**
  * Model profiles
  * 
  */
@@ -568,6 +573,16 @@ export class PrismaClient<
     * ```
     */
   get workspaceMember(): Prisma.WorkspaceMemberDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.inviteLink`: Exposes CRUD operations for the **InviteLink** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InviteLinks
+    * const inviteLinks = await prisma.inviteLink.findMany()
+    * ```
+    */
+  get inviteLink(): Prisma.InviteLinkDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.profiles`: Exposes CRUD operations for the **profiles** model.
@@ -1039,6 +1054,7 @@ export namespace Prisma {
     TaskAssignment: 'TaskAssignment',
     Workspace: 'Workspace',
     WorkspaceMember: 'WorkspaceMember',
+    InviteLink: 'InviteLink',
     profiles: 'profiles'
   };
 
@@ -1058,7 +1074,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "audit_log_entries" | "flow_state" | "identities" | "instances" | "mfa_amr_claims" | "mfa_challenges" | "mfa_factors" | "one_time_tokens" | "refresh_tokens" | "saml_providers" | "saml_relay_states" | "schema_migrations" | "sessions" | "sso_domains" | "sso_providers" | "users" | "project" | "task" | "taskAssignment" | "workspace" | "workspaceMember" | "profiles"
+      modelProps: "audit_log_entries" | "flow_state" | "identities" | "instances" | "mfa_amr_claims" | "mfa_challenges" | "mfa_factors" | "one_time_tokens" | "refresh_tokens" | "saml_providers" | "saml_relay_states" | "schema_migrations" | "sessions" | "sso_domains" | "sso_providers" | "users" | "project" | "task" | "taskAssignment" | "workspace" | "workspaceMember" | "inviteLink" | "profiles"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2616,6 +2632,80 @@ export namespace Prisma {
           }
         }
       }
+      InviteLink: {
+        payload: Prisma.$InviteLinkPayload<ExtArgs>
+        fields: Prisma.InviteLinkFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InviteLinkFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InviteLinkPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InviteLinkFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InviteLinkPayload>
+          }
+          findFirst: {
+            args: Prisma.InviteLinkFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InviteLinkPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InviteLinkFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InviteLinkPayload>
+          }
+          findMany: {
+            args: Prisma.InviteLinkFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InviteLinkPayload>[]
+          }
+          create: {
+            args: Prisma.InviteLinkCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InviteLinkPayload>
+          }
+          createMany: {
+            args: Prisma.InviteLinkCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.InviteLinkCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InviteLinkPayload>[]
+          }
+          delete: {
+            args: Prisma.InviteLinkDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InviteLinkPayload>
+          }
+          update: {
+            args: Prisma.InviteLinkUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InviteLinkPayload>
+          }
+          deleteMany: {
+            args: Prisma.InviteLinkDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InviteLinkUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.InviteLinkUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InviteLinkPayload>[]
+          }
+          upsert: {
+            args: Prisma.InviteLinkUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InviteLinkPayload>
+          }
+          aggregate: {
+            args: Prisma.InviteLinkAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInviteLink>
+          }
+          groupBy: {
+            args: Prisma.InviteLinkGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InviteLinkGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InviteLinkCountArgs<ExtArgs>
+            result: $Utils.Optional<InviteLinkCountAggregateOutputType> | number
+          }
+        }
+      }
       profiles: {
         payload: Prisma.$profilesPayload<ExtArgs>
         fields: Prisma.profilesFieldRefs
@@ -2803,6 +2893,7 @@ export namespace Prisma {
     taskAssignment?: TaskAssignmentOmit
     workspace?: WorkspaceOmit
     workspaceMember?: WorkspaceMemberOmit
+    inviteLink?: InviteLinkOmit
     profiles?: profilesOmit
   }
 
@@ -3058,6 +3149,7 @@ export namespace Prisma {
     mfa_factors: number
     one_time_tokens: number
     sessions: number
+    inviteLinks: number
     Workspace: number
   }
 
@@ -3066,6 +3158,7 @@ export namespace Prisma {
     mfa_factors?: boolean | UsersCountOutputTypeCountMfa_factorsArgs
     one_time_tokens?: boolean | UsersCountOutputTypeCountOne_time_tokensArgs
     sessions?: boolean | UsersCountOutputTypeCountSessionsArgs
+    inviteLinks?: boolean | UsersCountOutputTypeCountInviteLinksArgs
     Workspace?: boolean | UsersCountOutputTypeCountWorkspaceArgs
   }
 
@@ -3106,6 +3199,13 @@ export namespace Prisma {
    */
   export type UsersCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: sessionsWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountInviteLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InviteLinkWhereInput
   }
 
   /**
@@ -19998,6 +20098,7 @@ export namespace Prisma {
     mfa_factors?: boolean | users$mfa_factorsArgs<ExtArgs>
     one_time_tokens?: boolean | users$one_time_tokensArgs<ExtArgs>
     sessions?: boolean | users$sessionsArgs<ExtArgs>
+    inviteLinks?: boolean | users$inviteLinksArgs<ExtArgs>
     Workspace?: boolean | users$WorkspaceArgs<ExtArgs>
     profiles?: boolean | users$profilesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
@@ -20123,6 +20224,7 @@ export namespace Prisma {
     mfa_factors?: boolean | users$mfa_factorsArgs<ExtArgs>
     one_time_tokens?: boolean | users$one_time_tokensArgs<ExtArgs>
     sessions?: boolean | users$sessionsArgs<ExtArgs>
+    inviteLinks?: boolean | users$inviteLinksArgs<ExtArgs>
     Workspace?: boolean | users$WorkspaceArgs<ExtArgs>
     profiles?: boolean | users$profilesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
@@ -20137,6 +20239,7 @@ export namespace Prisma {
       mfa_factors: Prisma.$mfa_factorsPayload<ExtArgs>[]
       one_time_tokens: Prisma.$one_time_tokensPayload<ExtArgs>[]
       sessions: Prisma.$sessionsPayload<ExtArgs>[]
+      inviteLinks: Prisma.$InviteLinkPayload<ExtArgs>[]
       Workspace: Prisma.$WorkspacePayload<ExtArgs>[]
       profiles: Prisma.$profilesPayload<ExtArgs> | null
     }
@@ -20574,6 +20677,7 @@ export namespace Prisma {
     mfa_factors<T extends users$mfa_factorsArgs<ExtArgs> = {}>(args?: Subset<T, users$mfa_factorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mfa_factorsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     one_time_tokens<T extends users$one_time_tokensArgs<ExtArgs> = {}>(args?: Subset<T, users$one_time_tokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$one_time_tokensPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends users$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, users$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    inviteLinks<T extends users$inviteLinksArgs<ExtArgs> = {}>(args?: Subset<T, users$inviteLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Workspace<T extends users$WorkspaceArgs<ExtArgs> = {}>(args?: Subset<T, users$WorkspaceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     profiles<T extends users$profilesArgs<ExtArgs> = {}>(args?: Subset<T, users$profilesArgs<ExtArgs>>): Prisma__profilesClient<$Result.GetResult<Prisma.$profilesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
@@ -21121,6 +21225,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SessionsScalarFieldEnum | SessionsScalarFieldEnum[]
+  }
+
+  /**
+   * users.inviteLinks
+   */
+  export type users$inviteLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkInclude<ExtArgs> | null
+    where?: InviteLinkWhereInput
+    orderBy?: InviteLinkOrderByWithRelationInput | InviteLinkOrderByWithRelationInput[]
+    cursor?: InviteLinkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InviteLinkScalarFieldEnum | InviteLinkScalarFieldEnum[]
   }
 
   /**
@@ -24494,6 +24622,7 @@ export namespace Prisma {
     updatedAt?: boolean
     description?: boolean
     userId?: boolean
+    inviteLinks?: boolean | Workspace$inviteLinksArgs<ExtArgs>
     Project?: boolean | Workspace$ProjectArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
     WorkspaceMember?: boolean | Workspace$WorkspaceMemberArgs<ExtArgs>
@@ -24531,6 +24660,7 @@ export namespace Prisma {
 
   export type WorkspaceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "description" | "userId", ExtArgs["result"]["workspace"]>
   export type WorkspaceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    inviteLinks?: boolean | Workspace$inviteLinksArgs<ExtArgs>
     Project?: boolean | Workspace$ProjectArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
     WorkspaceMember?: boolean | Workspace$WorkspaceMemberArgs<ExtArgs>
@@ -24546,6 +24676,7 @@ export namespace Prisma {
   export type $WorkspacePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Workspace"
     objects: {
+      inviteLinks: Prisma.$InviteLinkPayload<ExtArgs> | null
       Project: Prisma.$ProjectPayload<ExtArgs>[]
       users: Prisma.$usersPayload<ExtArgs>
       WorkspaceMember: Prisma.$WorkspaceMemberPayload<ExtArgs>[]
@@ -24951,6 +25082,7 @@ export namespace Prisma {
    */
   export interface Prisma__WorkspaceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    inviteLinks<T extends Workspace$inviteLinksArgs<ExtArgs> = {}>(args?: Subset<T, Workspace$inviteLinksArgs<ExtArgs>>): Prisma__InviteLinkClient<$Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Project<T extends Workspace$ProjectArgs<ExtArgs> = {}>(args?: Subset<T, Workspace$ProjectArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     WorkspaceMember<T extends Workspace$WorkspaceMemberArgs<ExtArgs> = {}>(args?: Subset<T, Workspace$WorkspaceMemberArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorkspaceMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -25382,6 +25514,25 @@ export namespace Prisma {
      * Limit how many Workspaces to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Workspace.inviteLinks
+   */
+  export type Workspace$inviteLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkInclude<ExtArgs> | null
+    where?: InviteLinkWhereInput
   }
 
   /**
@@ -26514,6 +26665,1046 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: WorkspaceMemberInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InviteLink
+   */
+
+  export type AggregateInviteLink = {
+    _count: InviteLinkCountAggregateOutputType | null
+    _min: InviteLinkMinAggregateOutputType | null
+    _max: InviteLinkMaxAggregateOutputType | null
+  }
+
+  export type InviteLinkMinAggregateOutputType = {
+    id: string | null
+    workspaceId: string | null
+    userId: string | null
+  }
+
+  export type InviteLinkMaxAggregateOutputType = {
+    id: string | null
+    workspaceId: string | null
+    userId: string | null
+  }
+
+  export type InviteLinkCountAggregateOutputType = {
+    id: number
+    workspaceId: number
+    userId: number
+    _all: number
+  }
+
+
+  export type InviteLinkMinAggregateInputType = {
+    id?: true
+    workspaceId?: true
+    userId?: true
+  }
+
+  export type InviteLinkMaxAggregateInputType = {
+    id?: true
+    workspaceId?: true
+    userId?: true
+  }
+
+  export type InviteLinkCountAggregateInputType = {
+    id?: true
+    workspaceId?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type InviteLinkAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InviteLink to aggregate.
+     */
+    where?: InviteLinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InviteLinks to fetch.
+     */
+    orderBy?: InviteLinkOrderByWithRelationInput | InviteLinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InviteLinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InviteLinks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InviteLinks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InviteLinks
+    **/
+    _count?: true | InviteLinkCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InviteLinkMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InviteLinkMaxAggregateInputType
+  }
+
+  export type GetInviteLinkAggregateType<T extends InviteLinkAggregateArgs> = {
+        [P in keyof T & keyof AggregateInviteLink]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInviteLink[P]>
+      : GetScalarType<T[P], AggregateInviteLink[P]>
+  }
+
+
+
+
+  export type InviteLinkGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InviteLinkWhereInput
+    orderBy?: InviteLinkOrderByWithAggregationInput | InviteLinkOrderByWithAggregationInput[]
+    by: InviteLinkScalarFieldEnum[] | InviteLinkScalarFieldEnum
+    having?: InviteLinkScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InviteLinkCountAggregateInputType | true
+    _min?: InviteLinkMinAggregateInputType
+    _max?: InviteLinkMaxAggregateInputType
+  }
+
+  export type InviteLinkGroupByOutputType = {
+    id: string
+    workspaceId: string
+    userId: string
+    _count: InviteLinkCountAggregateOutputType | null
+    _min: InviteLinkMinAggregateOutputType | null
+    _max: InviteLinkMaxAggregateOutputType | null
+  }
+
+  type GetInviteLinkGroupByPayload<T extends InviteLinkGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InviteLinkGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InviteLinkGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InviteLinkGroupByOutputType[P]>
+            : GetScalarType<T[P], InviteLinkGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InviteLinkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    workspaceId?: boolean
+    userId?: boolean
+    user?: boolean | usersDefaultArgs<ExtArgs>
+    Workspace?: boolean | WorkspaceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["inviteLink"]>
+
+  export type InviteLinkSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    workspaceId?: boolean
+    userId?: boolean
+    user?: boolean | usersDefaultArgs<ExtArgs>
+    Workspace?: boolean | WorkspaceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["inviteLink"]>
+
+  export type InviteLinkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    workspaceId?: boolean
+    userId?: boolean
+    user?: boolean | usersDefaultArgs<ExtArgs>
+    Workspace?: boolean | WorkspaceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["inviteLink"]>
+
+  export type InviteLinkSelectScalar = {
+    id?: boolean
+    workspaceId?: boolean
+    userId?: boolean
+  }
+
+  export type InviteLinkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "workspaceId" | "userId", ExtArgs["result"]["inviteLink"]>
+  export type InviteLinkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | usersDefaultArgs<ExtArgs>
+    Workspace?: boolean | WorkspaceDefaultArgs<ExtArgs>
+  }
+  export type InviteLinkIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | usersDefaultArgs<ExtArgs>
+    Workspace?: boolean | WorkspaceDefaultArgs<ExtArgs>
+  }
+  export type InviteLinkIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | usersDefaultArgs<ExtArgs>
+    Workspace?: boolean | WorkspaceDefaultArgs<ExtArgs>
+  }
+
+  export type $InviteLinkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InviteLink"
+    objects: {
+      user: Prisma.$usersPayload<ExtArgs>
+      Workspace: Prisma.$WorkspacePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      workspaceId: string
+      userId: string
+    }, ExtArgs["result"]["inviteLink"]>
+    composites: {}
+  }
+
+  type InviteLinkGetPayload<S extends boolean | null | undefined | InviteLinkDefaultArgs> = $Result.GetResult<Prisma.$InviteLinkPayload, S>
+
+  type InviteLinkCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InviteLinkFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InviteLinkCountAggregateInputType | true
+    }
+
+  export interface InviteLinkDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InviteLink'], meta: { name: 'InviteLink' } }
+    /**
+     * Find zero or one InviteLink that matches the filter.
+     * @param {InviteLinkFindUniqueArgs} args - Arguments to find a InviteLink
+     * @example
+     * // Get one InviteLink
+     * const inviteLink = await prisma.inviteLink.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InviteLinkFindUniqueArgs>(args: SelectSubset<T, InviteLinkFindUniqueArgs<ExtArgs>>): Prisma__InviteLinkClient<$Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one InviteLink that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InviteLinkFindUniqueOrThrowArgs} args - Arguments to find a InviteLink
+     * @example
+     * // Get one InviteLink
+     * const inviteLink = await prisma.inviteLink.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InviteLinkFindUniqueOrThrowArgs>(args: SelectSubset<T, InviteLinkFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InviteLinkClient<$Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InviteLink that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InviteLinkFindFirstArgs} args - Arguments to find a InviteLink
+     * @example
+     * // Get one InviteLink
+     * const inviteLink = await prisma.inviteLink.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InviteLinkFindFirstArgs>(args?: SelectSubset<T, InviteLinkFindFirstArgs<ExtArgs>>): Prisma__InviteLinkClient<$Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InviteLink that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InviteLinkFindFirstOrThrowArgs} args - Arguments to find a InviteLink
+     * @example
+     * // Get one InviteLink
+     * const inviteLink = await prisma.inviteLink.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InviteLinkFindFirstOrThrowArgs>(args?: SelectSubset<T, InviteLinkFindFirstOrThrowArgs<ExtArgs>>): Prisma__InviteLinkClient<$Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more InviteLinks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InviteLinkFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InviteLinks
+     * const inviteLinks = await prisma.inviteLink.findMany()
+     * 
+     * // Get first 10 InviteLinks
+     * const inviteLinks = await prisma.inviteLink.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const inviteLinkWithIdOnly = await prisma.inviteLink.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InviteLinkFindManyArgs>(args?: SelectSubset<T, InviteLinkFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a InviteLink.
+     * @param {InviteLinkCreateArgs} args - Arguments to create a InviteLink.
+     * @example
+     * // Create one InviteLink
+     * const InviteLink = await prisma.inviteLink.create({
+     *   data: {
+     *     // ... data to create a InviteLink
+     *   }
+     * })
+     * 
+     */
+    create<T extends InviteLinkCreateArgs>(args: SelectSubset<T, InviteLinkCreateArgs<ExtArgs>>): Prisma__InviteLinkClient<$Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many InviteLinks.
+     * @param {InviteLinkCreateManyArgs} args - Arguments to create many InviteLinks.
+     * @example
+     * // Create many InviteLinks
+     * const inviteLink = await prisma.inviteLink.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InviteLinkCreateManyArgs>(args?: SelectSubset<T, InviteLinkCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many InviteLinks and returns the data saved in the database.
+     * @param {InviteLinkCreateManyAndReturnArgs} args - Arguments to create many InviteLinks.
+     * @example
+     * // Create many InviteLinks
+     * const inviteLink = await prisma.inviteLink.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many InviteLinks and only return the `id`
+     * const inviteLinkWithIdOnly = await prisma.inviteLink.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends InviteLinkCreateManyAndReturnArgs>(args?: SelectSubset<T, InviteLinkCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a InviteLink.
+     * @param {InviteLinkDeleteArgs} args - Arguments to delete one InviteLink.
+     * @example
+     * // Delete one InviteLink
+     * const InviteLink = await prisma.inviteLink.delete({
+     *   where: {
+     *     // ... filter to delete one InviteLink
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InviteLinkDeleteArgs>(args: SelectSubset<T, InviteLinkDeleteArgs<ExtArgs>>): Prisma__InviteLinkClient<$Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one InviteLink.
+     * @param {InviteLinkUpdateArgs} args - Arguments to update one InviteLink.
+     * @example
+     * // Update one InviteLink
+     * const inviteLink = await prisma.inviteLink.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InviteLinkUpdateArgs>(args: SelectSubset<T, InviteLinkUpdateArgs<ExtArgs>>): Prisma__InviteLinkClient<$Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more InviteLinks.
+     * @param {InviteLinkDeleteManyArgs} args - Arguments to filter InviteLinks to delete.
+     * @example
+     * // Delete a few InviteLinks
+     * const { count } = await prisma.inviteLink.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InviteLinkDeleteManyArgs>(args?: SelectSubset<T, InviteLinkDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InviteLinks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InviteLinkUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InviteLinks
+     * const inviteLink = await prisma.inviteLink.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InviteLinkUpdateManyArgs>(args: SelectSubset<T, InviteLinkUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InviteLinks and returns the data updated in the database.
+     * @param {InviteLinkUpdateManyAndReturnArgs} args - Arguments to update many InviteLinks.
+     * @example
+     * // Update many InviteLinks
+     * const inviteLink = await prisma.inviteLink.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more InviteLinks and only return the `id`
+     * const inviteLinkWithIdOnly = await prisma.inviteLink.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends InviteLinkUpdateManyAndReturnArgs>(args: SelectSubset<T, InviteLinkUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one InviteLink.
+     * @param {InviteLinkUpsertArgs} args - Arguments to update or create a InviteLink.
+     * @example
+     * // Update or create a InviteLink
+     * const inviteLink = await prisma.inviteLink.upsert({
+     *   create: {
+     *     // ... data to create a InviteLink
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InviteLink we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InviteLinkUpsertArgs>(args: SelectSubset<T, InviteLinkUpsertArgs<ExtArgs>>): Prisma__InviteLinkClient<$Result.GetResult<Prisma.$InviteLinkPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of InviteLinks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InviteLinkCountArgs} args - Arguments to filter InviteLinks to count.
+     * @example
+     * // Count the number of InviteLinks
+     * const count = await prisma.inviteLink.count({
+     *   where: {
+     *     // ... the filter for the InviteLinks we want to count
+     *   }
+     * })
+    **/
+    count<T extends InviteLinkCountArgs>(
+      args?: Subset<T, InviteLinkCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InviteLinkCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InviteLink.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InviteLinkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InviteLinkAggregateArgs>(args: Subset<T, InviteLinkAggregateArgs>): Prisma.PrismaPromise<GetInviteLinkAggregateType<T>>
+
+    /**
+     * Group by InviteLink.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InviteLinkGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InviteLinkGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InviteLinkGroupByArgs['orderBy'] }
+        : { orderBy?: InviteLinkGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InviteLinkGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInviteLinkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InviteLink model
+   */
+  readonly fields: InviteLinkFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InviteLink.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InviteLinkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Workspace<T extends WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, WorkspaceDefaultArgs<ExtArgs>>): Prisma__WorkspaceClient<$Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InviteLink model
+   */
+  interface InviteLinkFieldRefs {
+    readonly id: FieldRef<"InviteLink", 'String'>
+    readonly workspaceId: FieldRef<"InviteLink", 'String'>
+    readonly userId: FieldRef<"InviteLink", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InviteLink findUnique
+   */
+  export type InviteLinkFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which InviteLink to fetch.
+     */
+    where: InviteLinkWhereUniqueInput
+  }
+
+  /**
+   * InviteLink findUniqueOrThrow
+   */
+  export type InviteLinkFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which InviteLink to fetch.
+     */
+    where: InviteLinkWhereUniqueInput
+  }
+
+  /**
+   * InviteLink findFirst
+   */
+  export type InviteLinkFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which InviteLink to fetch.
+     */
+    where?: InviteLinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InviteLinks to fetch.
+     */
+    orderBy?: InviteLinkOrderByWithRelationInput | InviteLinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InviteLinks.
+     */
+    cursor?: InviteLinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InviteLinks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InviteLinks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InviteLinks.
+     */
+    distinct?: InviteLinkScalarFieldEnum | InviteLinkScalarFieldEnum[]
+  }
+
+  /**
+   * InviteLink findFirstOrThrow
+   */
+  export type InviteLinkFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which InviteLink to fetch.
+     */
+    where?: InviteLinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InviteLinks to fetch.
+     */
+    orderBy?: InviteLinkOrderByWithRelationInput | InviteLinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InviteLinks.
+     */
+    cursor?: InviteLinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InviteLinks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InviteLinks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InviteLinks.
+     */
+    distinct?: InviteLinkScalarFieldEnum | InviteLinkScalarFieldEnum[]
+  }
+
+  /**
+   * InviteLink findMany
+   */
+  export type InviteLinkFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which InviteLinks to fetch.
+     */
+    where?: InviteLinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InviteLinks to fetch.
+     */
+    orderBy?: InviteLinkOrderByWithRelationInput | InviteLinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InviteLinks.
+     */
+    cursor?: InviteLinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InviteLinks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InviteLinks.
+     */
+    skip?: number
+    distinct?: InviteLinkScalarFieldEnum | InviteLinkScalarFieldEnum[]
+  }
+
+  /**
+   * InviteLink create
+   */
+  export type InviteLinkCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkInclude<ExtArgs> | null
+    /**
+     * The data needed to create a InviteLink.
+     */
+    data: XOR<InviteLinkCreateInput, InviteLinkUncheckedCreateInput>
+  }
+
+  /**
+   * InviteLink createMany
+   */
+  export type InviteLinkCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InviteLinks.
+     */
+    data: InviteLinkCreateManyInput | InviteLinkCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * InviteLink createManyAndReturn
+   */
+  export type InviteLinkCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * The data used to create many InviteLinks.
+     */
+    data: InviteLinkCreateManyInput | InviteLinkCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * InviteLink update
+   */
+  export type InviteLinkUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkInclude<ExtArgs> | null
+    /**
+     * The data needed to update a InviteLink.
+     */
+    data: XOR<InviteLinkUpdateInput, InviteLinkUncheckedUpdateInput>
+    /**
+     * Choose, which InviteLink to update.
+     */
+    where: InviteLinkWhereUniqueInput
+  }
+
+  /**
+   * InviteLink updateMany
+   */
+  export type InviteLinkUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InviteLinks.
+     */
+    data: XOR<InviteLinkUpdateManyMutationInput, InviteLinkUncheckedUpdateManyInput>
+    /**
+     * Filter which InviteLinks to update
+     */
+    where?: InviteLinkWhereInput
+    /**
+     * Limit how many InviteLinks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * InviteLink updateManyAndReturn
+   */
+  export type InviteLinkUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * The data used to update InviteLinks.
+     */
+    data: XOR<InviteLinkUpdateManyMutationInput, InviteLinkUncheckedUpdateManyInput>
+    /**
+     * Filter which InviteLinks to update
+     */
+    where?: InviteLinkWhereInput
+    /**
+     * Limit how many InviteLinks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * InviteLink upsert
+   */
+  export type InviteLinkUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkInclude<ExtArgs> | null
+    /**
+     * The filter to search for the InviteLink to update in case it exists.
+     */
+    where: InviteLinkWhereUniqueInput
+    /**
+     * In case the InviteLink found by the `where` argument doesn't exist, create a new InviteLink with this data.
+     */
+    create: XOR<InviteLinkCreateInput, InviteLinkUncheckedCreateInput>
+    /**
+     * In case the InviteLink was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InviteLinkUpdateInput, InviteLinkUncheckedUpdateInput>
+  }
+
+  /**
+   * InviteLink delete
+   */
+  export type InviteLinkDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkInclude<ExtArgs> | null
+    /**
+     * Filter which InviteLink to delete.
+     */
+    where: InviteLinkWhereUniqueInput
+  }
+
+  /**
+   * InviteLink deleteMany
+   */
+  export type InviteLinkDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InviteLinks to delete
+     */
+    where?: InviteLinkWhereInput
+    /**
+     * Limit how many InviteLinks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * InviteLink without action
+   */
+  export type InviteLinkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InviteLink
+     */
+    select?: InviteLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InviteLink
+     */
+    omit?: InviteLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InviteLinkInclude<ExtArgs> | null
   }
 
 
@@ -27920,6 +29111,15 @@ export namespace Prisma {
   export type WorkspaceMemberScalarFieldEnum = (typeof WorkspaceMemberScalarFieldEnum)[keyof typeof WorkspaceMemberScalarFieldEnum]
 
 
+  export const InviteLinkScalarFieldEnum: {
+    id: 'id',
+    workspaceId: 'workspaceId',
+    userId: 'userId'
+  };
+
+  export type InviteLinkScalarFieldEnum = (typeof InviteLinkScalarFieldEnum)[keyof typeof InviteLinkScalarFieldEnum]
+
+
   export const ProfilesScalarFieldEnum: {
     id: 'id',
     username: 'username',
@@ -29218,6 +30418,7 @@ export namespace Prisma {
     mfa_factors?: Mfa_factorsListRelationFilter
     one_time_tokens?: One_time_tokensListRelationFilter
     sessions?: SessionsListRelationFilter
+    inviteLinks?: InviteLinkListRelationFilter
     Workspace?: WorkspaceListRelationFilter
     profiles?: XOR<ProfilesNullableScalarRelationFilter, profilesWhereInput> | null
   }
@@ -29262,6 +30463,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsOrderByRelationAggregateInput
     one_time_tokens?: one_time_tokensOrderByRelationAggregateInput
     sessions?: sessionsOrderByRelationAggregateInput
+    inviteLinks?: InviteLinkOrderByRelationAggregateInput
     Workspace?: WorkspaceOrderByRelationAggregateInput
     profiles?: profilesOrderByWithRelationInput
   }
@@ -29309,6 +30511,7 @@ export namespace Prisma {
     mfa_factors?: Mfa_factorsListRelationFilter
     one_time_tokens?: One_time_tokensListRelationFilter
     sessions?: SessionsListRelationFilter
+    inviteLinks?: InviteLinkListRelationFilter
     Workspace?: WorkspaceListRelationFilter
     profiles?: XOR<ProfilesNullableScalarRelationFilter, profilesWhereInput> | null
   }, "id" | "phone">
@@ -29579,6 +30782,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Workspace"> | Date | string
     description?: StringNullableFilter<"Workspace"> | string | null
     userId?: UuidFilter<"Workspace"> | string
+    inviteLinks?: XOR<InviteLinkNullableScalarRelationFilter, InviteLinkWhereInput> | null
     Project?: ProjectListRelationFilter
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     WorkspaceMember?: WorkspaceMemberListRelationFilter
@@ -29591,6 +30795,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     description?: SortOrderInput | SortOrder
     userId?: SortOrder
+    inviteLinks?: InviteLinkOrderByWithRelationInput
     Project?: ProjectOrderByRelationAggregateInput
     users?: usersOrderByWithRelationInput
     WorkspaceMember?: WorkspaceMemberOrderByRelationAggregateInput
@@ -29606,6 +30811,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Workspace"> | Date | string
     description?: StringNullableFilter<"Workspace"> | string | null
     userId?: UuidFilter<"Workspace"> | string
+    inviteLinks?: XOR<InviteLinkNullableScalarRelationFilter, InviteLinkWhereInput> | null
     Project?: ProjectListRelationFilter
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     WorkspaceMember?: WorkspaceMemberListRelationFilter
@@ -29691,6 +30897,54 @@ export namespace Prisma {
     role?: StringWithAggregatesFilter<"WorkspaceMember"> | string
     joinedAt?: DateTimeWithAggregatesFilter<"WorkspaceMember"> | Date | string
     userId?: UuidWithAggregatesFilter<"WorkspaceMember"> | string
+  }
+
+  export type InviteLinkWhereInput = {
+    AND?: InviteLinkWhereInput | InviteLinkWhereInput[]
+    OR?: InviteLinkWhereInput[]
+    NOT?: InviteLinkWhereInput | InviteLinkWhereInput[]
+    id?: StringFilter<"InviteLink"> | string
+    workspaceId?: StringFilter<"InviteLink"> | string
+    userId?: UuidFilter<"InviteLink"> | string
+    user?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    Workspace?: XOR<WorkspaceScalarRelationFilter, WorkspaceWhereInput>
+  }
+
+  export type InviteLinkOrderByWithRelationInput = {
+    id?: SortOrder
+    workspaceId?: SortOrder
+    userId?: SortOrder
+    user?: usersOrderByWithRelationInput
+    Workspace?: WorkspaceOrderByWithRelationInput
+  }
+
+  export type InviteLinkWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    workspaceId?: string
+    AND?: InviteLinkWhereInput | InviteLinkWhereInput[]
+    OR?: InviteLinkWhereInput[]
+    NOT?: InviteLinkWhereInput | InviteLinkWhereInput[]
+    userId?: UuidFilter<"InviteLink"> | string
+    user?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    Workspace?: XOR<WorkspaceScalarRelationFilter, WorkspaceWhereInput>
+  }, "id" | "workspaceId">
+
+  export type InviteLinkOrderByWithAggregationInput = {
+    id?: SortOrder
+    workspaceId?: SortOrder
+    userId?: SortOrder
+    _count?: InviteLinkCountOrderByAggregateInput
+    _max?: InviteLinkMaxOrderByAggregateInput
+    _min?: InviteLinkMinOrderByAggregateInput
+  }
+
+  export type InviteLinkScalarWhereWithAggregatesInput = {
+    AND?: InviteLinkScalarWhereWithAggregatesInput | InviteLinkScalarWhereWithAggregatesInput[]
+    OR?: InviteLinkScalarWhereWithAggregatesInput[]
+    NOT?: InviteLinkScalarWhereWithAggregatesInput | InviteLinkScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"InviteLink"> | string
+    workspaceId?: StringWithAggregatesFilter<"InviteLink"> | string
+    userId?: UuidWithAggregatesFilter<"InviteLink"> | string
   }
 
   export type profilesWhereInput = {
@@ -30886,6 +32140,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsCreateNestedManyWithoutUsersInput
     one_time_tokens?: one_time_tokensCreateNestedManyWithoutUsersInput
     sessions?: sessionsCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkCreateNestedManyWithoutUserInput
     Workspace?: WorkspaceCreateNestedManyWithoutUsersInput
     profiles?: profilesCreateNestedOneWithoutUsersInput
   }
@@ -30930,6 +32185,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsUncheckedCreateNestedManyWithoutUsersInput
     one_time_tokens?: one_time_tokensUncheckedCreateNestedManyWithoutUsersInput
     sessions?: sessionsUncheckedCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkUncheckedCreateNestedManyWithoutUserInput
     Workspace?: WorkspaceUncheckedCreateNestedManyWithoutUsersInput
     profiles?: profilesUncheckedCreateNestedOneWithoutUsersInput
   }
@@ -30974,6 +32230,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsUpdateManyWithoutUsersNestedInput
     one_time_tokens?: one_time_tokensUpdateManyWithoutUsersNestedInput
     sessions?: sessionsUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUpdateManyWithoutUserNestedInput
     Workspace?: WorkspaceUpdateManyWithoutUsersNestedInput
     profiles?: profilesUpdateOneWithoutUsersNestedInput
   }
@@ -31018,6 +32275,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsUncheckedUpdateManyWithoutUsersNestedInput
     one_time_tokens?: one_time_tokensUncheckedUpdateManyWithoutUsersNestedInput
     sessions?: sessionsUncheckedUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUncheckedUpdateManyWithoutUserNestedInput
     Workspace?: WorkspaceUncheckedUpdateManyWithoutUsersNestedInput
     profiles?: profilesUncheckedUpdateOneWithoutUsersNestedInput
   }
@@ -31322,6 +32580,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     description?: string | null
+    inviteLinks?: InviteLinkCreateNestedOneWithoutWorkspaceInput
     Project?: ProjectCreateNestedManyWithoutWorkspaceInput
     users: usersCreateNestedOneWithoutWorkspaceInput
     WorkspaceMember?: WorkspaceMemberCreateNestedManyWithoutWorkspaceInput
@@ -31334,6 +32593,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     description?: string | null
     userId: string
+    inviteLinks?: InviteLinkUncheckedCreateNestedOneWithoutWorkspaceInput
     Project?: ProjectUncheckedCreateNestedManyWithoutWorkspaceInput
     WorkspaceMember?: WorkspaceMemberUncheckedCreateNestedManyWithoutWorkspaceInput
   }
@@ -31344,6 +32604,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    inviteLinks?: InviteLinkUpdateOneWithoutWorkspaceNestedInput
     Project?: ProjectUpdateManyWithoutWorkspaceNestedInput
     users?: usersUpdateOneRequiredWithoutWorkspaceNestedInput
     WorkspaceMember?: WorkspaceMemberUpdateManyWithoutWorkspaceNestedInput
@@ -31356,6 +32617,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
+    inviteLinks?: InviteLinkUncheckedUpdateOneWithoutWorkspaceNestedInput
     Project?: ProjectUncheckedUpdateManyWithoutWorkspaceNestedInput
     WorkspaceMember?: WorkspaceMemberUncheckedUpdateManyWithoutWorkspaceNestedInput
   }
@@ -31437,6 +32699,46 @@ export namespace Prisma {
     workspaceId?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InviteLinkCreateInput = {
+    id?: string
+    user: usersCreateNestedOneWithoutInviteLinksInput
+    Workspace: WorkspaceCreateNestedOneWithoutInviteLinksInput
+  }
+
+  export type InviteLinkUncheckedCreateInput = {
+    id?: string
+    workspaceId: string
+    userId: string
+  }
+
+  export type InviteLinkUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user?: usersUpdateOneRequiredWithoutInviteLinksNestedInput
+    Workspace?: WorkspaceUpdateOneRequiredWithoutInviteLinksNestedInput
+  }
+
+  export type InviteLinkUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    workspaceId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InviteLinkCreateManyInput = {
+    id?: string
+    workspaceId: string
+    userId: string
+  }
+
+  export type InviteLinkUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InviteLinkUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    workspaceId?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -32500,6 +33802,12 @@ export namespace Prisma {
     none?: sessionsWhereInput
   }
 
+  export type InviteLinkListRelationFilter = {
+    every?: InviteLinkWhereInput
+    some?: InviteLinkWhereInput
+    none?: InviteLinkWhereInput
+  }
+
   export type WorkspaceListRelationFilter = {
     every?: WorkspaceWhereInput
     some?: WorkspaceWhereInput
@@ -32524,6 +33832,10 @@ export namespace Prisma {
   }
 
   export type sessionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type InviteLinkOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -32778,6 +34090,11 @@ export namespace Prisma {
     assignedAt?: SortOrder
   }
 
+  export type InviteLinkNullableScalarRelationFilter = {
+    is?: InviteLinkWhereInput | null
+    isNot?: InviteLinkWhereInput | null
+  }
+
   export type ProjectListRelationFilter = {
     every?: ProjectWhereInput
     some?: ProjectWhereInput
@@ -32846,6 +34163,24 @@ export namespace Prisma {
     workspaceId?: SortOrder
     role?: SortOrder
     joinedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type InviteLinkCountOrderByAggregateInput = {
+    id?: SortOrder
+    workspaceId?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type InviteLinkMaxOrderByAggregateInput = {
+    id?: SortOrder
+    workspaceId?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type InviteLinkMinOrderByAggregateInput = {
+    id?: SortOrder
+    workspaceId?: SortOrder
     userId?: SortOrder
   }
 
@@ -33405,6 +34740,13 @@ export namespace Prisma {
     connect?: sessionsWhereUniqueInput | sessionsWhereUniqueInput[]
   }
 
+  export type InviteLinkCreateNestedManyWithoutUserInput = {
+    create?: XOR<InviteLinkCreateWithoutUserInput, InviteLinkUncheckedCreateWithoutUserInput> | InviteLinkCreateWithoutUserInput[] | InviteLinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: InviteLinkCreateOrConnectWithoutUserInput | InviteLinkCreateOrConnectWithoutUserInput[]
+    createMany?: InviteLinkCreateManyUserInputEnvelope
+    connect?: InviteLinkWhereUniqueInput | InviteLinkWhereUniqueInput[]
+  }
+
   export type WorkspaceCreateNestedManyWithoutUsersInput = {
     create?: XOR<WorkspaceCreateWithoutUsersInput, WorkspaceUncheckedCreateWithoutUsersInput> | WorkspaceCreateWithoutUsersInput[] | WorkspaceUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: WorkspaceCreateOrConnectWithoutUsersInput | WorkspaceCreateOrConnectWithoutUsersInput[]
@@ -33444,6 +34786,13 @@ export namespace Prisma {
     connectOrCreate?: sessionsCreateOrConnectWithoutUsersInput | sessionsCreateOrConnectWithoutUsersInput[]
     createMany?: sessionsCreateManyUsersInputEnvelope
     connect?: sessionsWhereUniqueInput | sessionsWhereUniqueInput[]
+  }
+
+  export type InviteLinkUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<InviteLinkCreateWithoutUserInput, InviteLinkUncheckedCreateWithoutUserInput> | InviteLinkCreateWithoutUserInput[] | InviteLinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: InviteLinkCreateOrConnectWithoutUserInput | InviteLinkCreateOrConnectWithoutUserInput[]
+    createMany?: InviteLinkCreateManyUserInputEnvelope
+    connect?: InviteLinkWhereUniqueInput | InviteLinkWhereUniqueInput[]
   }
 
   export type WorkspaceUncheckedCreateNestedManyWithoutUsersInput = {
@@ -33527,6 +34876,20 @@ export namespace Prisma {
     deleteMany?: sessionsScalarWhereInput | sessionsScalarWhereInput[]
   }
 
+  export type InviteLinkUpdateManyWithoutUserNestedInput = {
+    create?: XOR<InviteLinkCreateWithoutUserInput, InviteLinkUncheckedCreateWithoutUserInput> | InviteLinkCreateWithoutUserInput[] | InviteLinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: InviteLinkCreateOrConnectWithoutUserInput | InviteLinkCreateOrConnectWithoutUserInput[]
+    upsert?: InviteLinkUpsertWithWhereUniqueWithoutUserInput | InviteLinkUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: InviteLinkCreateManyUserInputEnvelope
+    set?: InviteLinkWhereUniqueInput | InviteLinkWhereUniqueInput[]
+    disconnect?: InviteLinkWhereUniqueInput | InviteLinkWhereUniqueInput[]
+    delete?: InviteLinkWhereUniqueInput | InviteLinkWhereUniqueInput[]
+    connect?: InviteLinkWhereUniqueInput | InviteLinkWhereUniqueInput[]
+    update?: InviteLinkUpdateWithWhereUniqueWithoutUserInput | InviteLinkUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: InviteLinkUpdateManyWithWhereWithoutUserInput | InviteLinkUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: InviteLinkScalarWhereInput | InviteLinkScalarWhereInput[]
+  }
+
   export type WorkspaceUpdateManyWithoutUsersNestedInput = {
     create?: XOR<WorkspaceCreateWithoutUsersInput, WorkspaceUncheckedCreateWithoutUsersInput> | WorkspaceCreateWithoutUsersInput[] | WorkspaceUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: WorkspaceCreateOrConnectWithoutUsersInput | WorkspaceCreateOrConnectWithoutUsersInput[]
@@ -33607,6 +34970,20 @@ export namespace Prisma {
     deleteMany?: sessionsScalarWhereInput | sessionsScalarWhereInput[]
   }
 
+  export type InviteLinkUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<InviteLinkCreateWithoutUserInput, InviteLinkUncheckedCreateWithoutUserInput> | InviteLinkCreateWithoutUserInput[] | InviteLinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: InviteLinkCreateOrConnectWithoutUserInput | InviteLinkCreateOrConnectWithoutUserInput[]
+    upsert?: InviteLinkUpsertWithWhereUniqueWithoutUserInput | InviteLinkUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: InviteLinkCreateManyUserInputEnvelope
+    set?: InviteLinkWhereUniqueInput | InviteLinkWhereUniqueInput[]
+    disconnect?: InviteLinkWhereUniqueInput | InviteLinkWhereUniqueInput[]
+    delete?: InviteLinkWhereUniqueInput | InviteLinkWhereUniqueInput[]
+    connect?: InviteLinkWhereUniqueInput | InviteLinkWhereUniqueInput[]
+    update?: InviteLinkUpdateWithWhereUniqueWithoutUserInput | InviteLinkUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: InviteLinkUpdateManyWithWhereWithoutUserInput | InviteLinkUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: InviteLinkScalarWhereInput | InviteLinkScalarWhereInput[]
+  }
+
   export type WorkspaceUncheckedUpdateManyWithoutUsersNestedInput = {
     create?: XOR<WorkspaceCreateWithoutUsersInput, WorkspaceUncheckedCreateWithoutUsersInput> | WorkspaceCreateWithoutUsersInput[] | WorkspaceUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: WorkspaceCreateOrConnectWithoutUsersInput | WorkspaceCreateOrConnectWithoutUsersInput[]
@@ -33663,6 +35040,12 @@ export namespace Prisma {
     update?: XOR<XOR<profilesUpdateToOneWithWhereWithoutTaskAssignmentInput, profilesUpdateWithoutTaskAssignmentInput>, profilesUncheckedUpdateWithoutTaskAssignmentInput>
   }
 
+  export type InviteLinkCreateNestedOneWithoutWorkspaceInput = {
+    create?: XOR<InviteLinkCreateWithoutWorkspaceInput, InviteLinkUncheckedCreateWithoutWorkspaceInput>
+    connectOrCreate?: InviteLinkCreateOrConnectWithoutWorkspaceInput
+    connect?: InviteLinkWhereUniqueInput
+  }
+
   export type ProjectCreateNestedManyWithoutWorkspaceInput = {
     create?: XOR<ProjectCreateWithoutWorkspaceInput, ProjectUncheckedCreateWithoutWorkspaceInput> | ProjectCreateWithoutWorkspaceInput[] | ProjectUncheckedCreateWithoutWorkspaceInput[]
     connectOrCreate?: ProjectCreateOrConnectWithoutWorkspaceInput | ProjectCreateOrConnectWithoutWorkspaceInput[]
@@ -33683,6 +35066,12 @@ export namespace Prisma {
     connect?: WorkspaceMemberWhereUniqueInput | WorkspaceMemberWhereUniqueInput[]
   }
 
+  export type InviteLinkUncheckedCreateNestedOneWithoutWorkspaceInput = {
+    create?: XOR<InviteLinkCreateWithoutWorkspaceInput, InviteLinkUncheckedCreateWithoutWorkspaceInput>
+    connectOrCreate?: InviteLinkCreateOrConnectWithoutWorkspaceInput
+    connect?: InviteLinkWhereUniqueInput
+  }
+
   export type ProjectUncheckedCreateNestedManyWithoutWorkspaceInput = {
     create?: XOR<ProjectCreateWithoutWorkspaceInput, ProjectUncheckedCreateWithoutWorkspaceInput> | ProjectCreateWithoutWorkspaceInput[] | ProjectUncheckedCreateWithoutWorkspaceInput[]
     connectOrCreate?: ProjectCreateOrConnectWithoutWorkspaceInput | ProjectCreateOrConnectWithoutWorkspaceInput[]
@@ -33695,6 +35084,16 @@ export namespace Prisma {
     connectOrCreate?: WorkspaceMemberCreateOrConnectWithoutWorkspaceInput | WorkspaceMemberCreateOrConnectWithoutWorkspaceInput[]
     createMany?: WorkspaceMemberCreateManyWorkspaceInputEnvelope
     connect?: WorkspaceMemberWhereUniqueInput | WorkspaceMemberWhereUniqueInput[]
+  }
+
+  export type InviteLinkUpdateOneWithoutWorkspaceNestedInput = {
+    create?: XOR<InviteLinkCreateWithoutWorkspaceInput, InviteLinkUncheckedCreateWithoutWorkspaceInput>
+    connectOrCreate?: InviteLinkCreateOrConnectWithoutWorkspaceInput
+    upsert?: InviteLinkUpsertWithoutWorkspaceInput
+    disconnect?: InviteLinkWhereInput | boolean
+    delete?: InviteLinkWhereInput | boolean
+    connect?: InviteLinkWhereUniqueInput
+    update?: XOR<XOR<InviteLinkUpdateToOneWithWhereWithoutWorkspaceInput, InviteLinkUpdateWithoutWorkspaceInput>, InviteLinkUncheckedUpdateWithoutWorkspaceInput>
   }
 
   export type ProjectUpdateManyWithoutWorkspaceNestedInput = {
@@ -33731,6 +35130,16 @@ export namespace Prisma {
     update?: WorkspaceMemberUpdateWithWhereUniqueWithoutWorkspaceInput | WorkspaceMemberUpdateWithWhereUniqueWithoutWorkspaceInput[]
     updateMany?: WorkspaceMemberUpdateManyWithWhereWithoutWorkspaceInput | WorkspaceMemberUpdateManyWithWhereWithoutWorkspaceInput[]
     deleteMany?: WorkspaceMemberScalarWhereInput | WorkspaceMemberScalarWhereInput[]
+  }
+
+  export type InviteLinkUncheckedUpdateOneWithoutWorkspaceNestedInput = {
+    create?: XOR<InviteLinkCreateWithoutWorkspaceInput, InviteLinkUncheckedCreateWithoutWorkspaceInput>
+    connectOrCreate?: InviteLinkCreateOrConnectWithoutWorkspaceInput
+    upsert?: InviteLinkUpsertWithoutWorkspaceInput
+    disconnect?: InviteLinkWhereInput | boolean
+    delete?: InviteLinkWhereInput | boolean
+    connect?: InviteLinkWhereUniqueInput
+    update?: XOR<XOR<InviteLinkUpdateToOneWithWhereWithoutWorkspaceInput, InviteLinkUpdateWithoutWorkspaceInput>, InviteLinkUncheckedUpdateWithoutWorkspaceInput>
   }
 
   export type ProjectUncheckedUpdateManyWithoutWorkspaceNestedInput = {
@@ -33787,6 +35196,34 @@ export namespace Prisma {
     upsert?: WorkspaceUpsertWithoutWorkspaceMemberInput
     connect?: WorkspaceWhereUniqueInput
     update?: XOR<XOR<WorkspaceUpdateToOneWithWhereWithoutWorkspaceMemberInput, WorkspaceUpdateWithoutWorkspaceMemberInput>, WorkspaceUncheckedUpdateWithoutWorkspaceMemberInput>
+  }
+
+  export type usersCreateNestedOneWithoutInviteLinksInput = {
+    create?: XOR<usersCreateWithoutInviteLinksInput, usersUncheckedCreateWithoutInviteLinksInput>
+    connectOrCreate?: usersCreateOrConnectWithoutInviteLinksInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type WorkspaceCreateNestedOneWithoutInviteLinksInput = {
+    create?: XOR<WorkspaceCreateWithoutInviteLinksInput, WorkspaceUncheckedCreateWithoutInviteLinksInput>
+    connectOrCreate?: WorkspaceCreateOrConnectWithoutInviteLinksInput
+    connect?: WorkspaceWhereUniqueInput
+  }
+
+  export type usersUpdateOneRequiredWithoutInviteLinksNestedInput = {
+    create?: XOR<usersCreateWithoutInviteLinksInput, usersUncheckedCreateWithoutInviteLinksInput>
+    connectOrCreate?: usersCreateOrConnectWithoutInviteLinksInput
+    upsert?: usersUpsertWithoutInviteLinksInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutInviteLinksInput, usersUpdateWithoutInviteLinksInput>, usersUncheckedUpdateWithoutInviteLinksInput>
+  }
+
+  export type WorkspaceUpdateOneRequiredWithoutInviteLinksNestedInput = {
+    create?: XOR<WorkspaceCreateWithoutInviteLinksInput, WorkspaceUncheckedCreateWithoutInviteLinksInput>
+    connectOrCreate?: WorkspaceCreateOrConnectWithoutInviteLinksInput
+    upsert?: WorkspaceUpsertWithoutInviteLinksInput
+    connect?: WorkspaceWhereUniqueInput
+    update?: XOR<XOR<WorkspaceUpdateToOneWithWhereWithoutInviteLinksInput, WorkspaceUpdateWithoutInviteLinksInput>, WorkspaceUncheckedUpdateWithoutInviteLinksInput>
   }
 
   export type TaskAssignmentCreateNestedManyWithoutProfilesInput = {
@@ -34409,6 +35846,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsCreateNestedManyWithoutUsersInput
     one_time_tokens?: one_time_tokensCreateNestedManyWithoutUsersInput
     sessions?: sessionsCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkCreateNestedManyWithoutUserInput
     Workspace?: WorkspaceCreateNestedManyWithoutUsersInput
     profiles?: profilesCreateNestedOneWithoutUsersInput
   }
@@ -34452,6 +35890,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsUncheckedCreateNestedManyWithoutUsersInput
     one_time_tokens?: one_time_tokensUncheckedCreateNestedManyWithoutUsersInput
     sessions?: sessionsUncheckedCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkUncheckedCreateNestedManyWithoutUserInput
     Workspace?: WorkspaceUncheckedCreateNestedManyWithoutUsersInput
     profiles?: profilesUncheckedCreateNestedOneWithoutUsersInput
   }
@@ -34511,6 +35950,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsUpdateManyWithoutUsersNestedInput
     one_time_tokens?: one_time_tokensUpdateManyWithoutUsersNestedInput
     sessions?: sessionsUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUpdateManyWithoutUserNestedInput
     Workspace?: WorkspaceUpdateManyWithoutUsersNestedInput
     profiles?: profilesUpdateOneWithoutUsersNestedInput
   }
@@ -34554,6 +35994,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsUncheckedUpdateManyWithoutUsersNestedInput
     one_time_tokens?: one_time_tokensUncheckedUpdateManyWithoutUsersNestedInput
     sessions?: sessionsUncheckedUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUncheckedUpdateManyWithoutUserNestedInput
     Workspace?: WorkspaceUncheckedUpdateManyWithoutUsersNestedInput
     profiles?: profilesUncheckedUpdateOneWithoutUsersNestedInput
   }
@@ -34777,6 +36218,7 @@ export namespace Prisma {
     identities?: identitiesCreateNestedManyWithoutUsersInput
     one_time_tokens?: one_time_tokensCreateNestedManyWithoutUsersInput
     sessions?: sessionsCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkCreateNestedManyWithoutUserInput
     Workspace?: WorkspaceCreateNestedManyWithoutUsersInput
     profiles?: profilesCreateNestedOneWithoutUsersInput
   }
@@ -34820,6 +36262,7 @@ export namespace Prisma {
     identities?: identitiesUncheckedCreateNestedManyWithoutUsersInput
     one_time_tokens?: one_time_tokensUncheckedCreateNestedManyWithoutUsersInput
     sessions?: sessionsUncheckedCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkUncheckedCreateNestedManyWithoutUserInput
     Workspace?: WorkspaceUncheckedCreateNestedManyWithoutUsersInput
     profiles?: profilesUncheckedCreateNestedOneWithoutUsersInput
   }
@@ -34908,6 +36351,7 @@ export namespace Prisma {
     identities?: identitiesUpdateManyWithoutUsersNestedInput
     one_time_tokens?: one_time_tokensUpdateManyWithoutUsersNestedInput
     sessions?: sessionsUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUpdateManyWithoutUserNestedInput
     Workspace?: WorkspaceUpdateManyWithoutUsersNestedInput
     profiles?: profilesUpdateOneWithoutUsersNestedInput
   }
@@ -34951,6 +36395,7 @@ export namespace Prisma {
     identities?: identitiesUncheckedUpdateManyWithoutUsersNestedInput
     one_time_tokens?: one_time_tokensUncheckedUpdateManyWithoutUsersNestedInput
     sessions?: sessionsUncheckedUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUncheckedUpdateManyWithoutUserNestedInput
     Workspace?: WorkspaceUncheckedUpdateManyWithoutUsersNestedInput
     profiles?: profilesUncheckedUpdateOneWithoutUsersNestedInput
   }
@@ -34994,6 +36439,7 @@ export namespace Prisma {
     identities?: identitiesCreateNestedManyWithoutUsersInput
     mfa_factors?: mfa_factorsCreateNestedManyWithoutUsersInput
     sessions?: sessionsCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkCreateNestedManyWithoutUserInput
     Workspace?: WorkspaceCreateNestedManyWithoutUsersInput
     profiles?: profilesCreateNestedOneWithoutUsersInput
   }
@@ -35037,6 +36483,7 @@ export namespace Prisma {
     identities?: identitiesUncheckedCreateNestedManyWithoutUsersInput
     mfa_factors?: mfa_factorsUncheckedCreateNestedManyWithoutUsersInput
     sessions?: sessionsUncheckedCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkUncheckedCreateNestedManyWithoutUserInput
     Workspace?: WorkspaceUncheckedCreateNestedManyWithoutUsersInput
     profiles?: profilesUncheckedCreateNestedOneWithoutUsersInput
   }
@@ -35096,6 +36543,7 @@ export namespace Prisma {
     identities?: identitiesUpdateManyWithoutUsersNestedInput
     mfa_factors?: mfa_factorsUpdateManyWithoutUsersNestedInput
     sessions?: sessionsUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUpdateManyWithoutUserNestedInput
     Workspace?: WorkspaceUpdateManyWithoutUsersNestedInput
     profiles?: profilesUpdateOneWithoutUsersNestedInput
   }
@@ -35139,6 +36587,7 @@ export namespace Prisma {
     identities?: identitiesUncheckedUpdateManyWithoutUsersNestedInput
     mfa_factors?: mfa_factorsUncheckedUpdateManyWithoutUsersNestedInput
     sessions?: sessionsUncheckedUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUncheckedUpdateManyWithoutUserNestedInput
     Workspace?: WorkspaceUncheckedUpdateManyWithoutUsersNestedInput
     profiles?: profilesUncheckedUpdateOneWithoutUsersNestedInput
   }
@@ -35502,6 +36951,7 @@ export namespace Prisma {
     identities?: identitiesCreateNestedManyWithoutUsersInput
     mfa_factors?: mfa_factorsCreateNestedManyWithoutUsersInput
     one_time_tokens?: one_time_tokensCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkCreateNestedManyWithoutUserInput
     Workspace?: WorkspaceCreateNestedManyWithoutUsersInput
     profiles?: profilesCreateNestedOneWithoutUsersInput
   }
@@ -35545,6 +36995,7 @@ export namespace Prisma {
     identities?: identitiesUncheckedCreateNestedManyWithoutUsersInput
     mfa_factors?: mfa_factorsUncheckedCreateNestedManyWithoutUsersInput
     one_time_tokens?: one_time_tokensUncheckedCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkUncheckedCreateNestedManyWithoutUserInput
     Workspace?: WorkspaceUncheckedCreateNestedManyWithoutUsersInput
     profiles?: profilesUncheckedCreateNestedOneWithoutUsersInput
   }
@@ -35662,6 +37113,7 @@ export namespace Prisma {
     identities?: identitiesUpdateManyWithoutUsersNestedInput
     mfa_factors?: mfa_factorsUpdateManyWithoutUsersNestedInput
     one_time_tokens?: one_time_tokensUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUpdateManyWithoutUserNestedInput
     Workspace?: WorkspaceUpdateManyWithoutUsersNestedInput
     profiles?: profilesUpdateOneWithoutUsersNestedInput
   }
@@ -35705,6 +37157,7 @@ export namespace Prisma {
     identities?: identitiesUncheckedUpdateManyWithoutUsersNestedInput
     mfa_factors?: mfa_factorsUncheckedUpdateManyWithoutUsersNestedInput
     one_time_tokens?: one_time_tokensUncheckedUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUncheckedUpdateManyWithoutUserNestedInput
     Workspace?: WorkspaceUncheckedUpdateManyWithoutUsersNestedInput
     profiles?: profilesUncheckedUpdateOneWithoutUsersNestedInput
   }
@@ -36065,12 +37518,33 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type InviteLinkCreateWithoutUserInput = {
+    id?: string
+    Workspace: WorkspaceCreateNestedOneWithoutInviteLinksInput
+  }
+
+  export type InviteLinkUncheckedCreateWithoutUserInput = {
+    id?: string
+    workspaceId: string
+  }
+
+  export type InviteLinkCreateOrConnectWithoutUserInput = {
+    where: InviteLinkWhereUniqueInput
+    create: XOR<InviteLinkCreateWithoutUserInput, InviteLinkUncheckedCreateWithoutUserInput>
+  }
+
+  export type InviteLinkCreateManyUserInputEnvelope = {
+    data: InviteLinkCreateManyUserInput | InviteLinkCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type WorkspaceCreateWithoutUsersInput = {
     id?: string
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
     description?: string | null
+    inviteLinks?: InviteLinkCreateNestedOneWithoutWorkspaceInput
     Project?: ProjectCreateNestedManyWithoutWorkspaceInput
     WorkspaceMember?: WorkspaceMemberCreateNestedManyWithoutWorkspaceInput
   }
@@ -36081,6 +37555,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     description?: string | null
+    inviteLinks?: InviteLinkUncheckedCreateNestedOneWithoutWorkspaceInput
     Project?: ProjectUncheckedCreateNestedManyWithoutWorkspaceInput
     WorkspaceMember?: WorkspaceMemberUncheckedCreateNestedManyWithoutWorkspaceInput
   }
@@ -36241,6 +37716,31 @@ export namespace Prisma {
     tag?: StringNullableFilter<"sessions"> | string | null
   }
 
+  export type InviteLinkUpsertWithWhereUniqueWithoutUserInput = {
+    where: InviteLinkWhereUniqueInput
+    update: XOR<InviteLinkUpdateWithoutUserInput, InviteLinkUncheckedUpdateWithoutUserInput>
+    create: XOR<InviteLinkCreateWithoutUserInput, InviteLinkUncheckedCreateWithoutUserInput>
+  }
+
+  export type InviteLinkUpdateWithWhereUniqueWithoutUserInput = {
+    where: InviteLinkWhereUniqueInput
+    data: XOR<InviteLinkUpdateWithoutUserInput, InviteLinkUncheckedUpdateWithoutUserInput>
+  }
+
+  export type InviteLinkUpdateManyWithWhereWithoutUserInput = {
+    where: InviteLinkScalarWhereInput
+    data: XOR<InviteLinkUpdateManyMutationInput, InviteLinkUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type InviteLinkScalarWhereInput = {
+    AND?: InviteLinkScalarWhereInput | InviteLinkScalarWhereInput[]
+    OR?: InviteLinkScalarWhereInput[]
+    NOT?: InviteLinkScalarWhereInput | InviteLinkScalarWhereInput[]
+    id?: StringFilter<"InviteLink"> | string
+    workspaceId?: StringFilter<"InviteLink"> | string
+    userId?: UuidFilter<"InviteLink"> | string
+  }
+
   export type WorkspaceUpsertWithWhereUniqueWithoutUsersInput = {
     where: WorkspaceWhereUniqueInput
     update: XOR<WorkspaceUpdateWithoutUsersInput, WorkspaceUncheckedUpdateWithoutUsersInput>
@@ -36300,6 +37800,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     description?: string | null
+    inviteLinks?: InviteLinkCreateNestedOneWithoutWorkspaceInput
     users: usersCreateNestedOneWithoutWorkspaceInput
     WorkspaceMember?: WorkspaceMemberCreateNestedManyWithoutWorkspaceInput
   }
@@ -36311,6 +37812,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     description?: string | null
     userId: string
+    inviteLinks?: InviteLinkUncheckedCreateNestedOneWithoutWorkspaceInput
     WorkspaceMember?: WorkspaceMemberUncheckedCreateNestedManyWithoutWorkspaceInput
   }
 
@@ -36336,6 +37838,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    inviteLinks?: InviteLinkUpdateOneWithoutWorkspaceNestedInput
     users?: usersUpdateOneRequiredWithoutWorkspaceNestedInput
     WorkspaceMember?: WorkspaceMemberUpdateManyWithoutWorkspaceNestedInput
   }
@@ -36347,6 +37850,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
+    inviteLinks?: InviteLinkUncheckedUpdateOneWithoutWorkspaceNestedInput
     WorkspaceMember?: WorkspaceMemberUncheckedUpdateManyWithoutWorkspaceNestedInput
   }
 
@@ -36392,6 +37896,21 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     WorkspaceMember?: WorkspaceMemberUncheckedUpdateManyWithoutProfilesNestedInput
+  }
+
+  export type InviteLinkCreateWithoutWorkspaceInput = {
+    id?: string
+    user: usersCreateNestedOneWithoutInviteLinksInput
+  }
+
+  export type InviteLinkUncheckedCreateWithoutWorkspaceInput = {
+    id?: string
+    userId: string
+  }
+
+  export type InviteLinkCreateOrConnectWithoutWorkspaceInput = {
+    where: InviteLinkWhereUniqueInput
+    create: XOR<InviteLinkCreateWithoutWorkspaceInput, InviteLinkUncheckedCreateWithoutWorkspaceInput>
   }
 
   export type ProjectCreateWithoutWorkspaceInput = {
@@ -36460,6 +37979,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsCreateNestedManyWithoutUsersInput
     one_time_tokens?: one_time_tokensCreateNestedManyWithoutUsersInput
     sessions?: sessionsCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkCreateNestedManyWithoutUserInput
     profiles?: profilesCreateNestedOneWithoutUsersInput
   }
 
@@ -36503,6 +38023,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsUncheckedCreateNestedManyWithoutUsersInput
     one_time_tokens?: one_time_tokensUncheckedCreateNestedManyWithoutUsersInput
     sessions?: sessionsUncheckedCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkUncheckedCreateNestedManyWithoutUserInput
     profiles?: profilesUncheckedCreateNestedOneWithoutUsersInput
   }
 
@@ -36533,6 +38054,27 @@ export namespace Prisma {
   export type WorkspaceMemberCreateManyWorkspaceInputEnvelope = {
     data: WorkspaceMemberCreateManyWorkspaceInput | WorkspaceMemberCreateManyWorkspaceInput[]
     skipDuplicates?: boolean
+  }
+
+  export type InviteLinkUpsertWithoutWorkspaceInput = {
+    update: XOR<InviteLinkUpdateWithoutWorkspaceInput, InviteLinkUncheckedUpdateWithoutWorkspaceInput>
+    create: XOR<InviteLinkCreateWithoutWorkspaceInput, InviteLinkUncheckedCreateWithoutWorkspaceInput>
+    where?: InviteLinkWhereInput
+  }
+
+  export type InviteLinkUpdateToOneWithWhereWithoutWorkspaceInput = {
+    where?: InviteLinkWhereInput
+    data: XOR<InviteLinkUpdateWithoutWorkspaceInput, InviteLinkUncheckedUpdateWithoutWorkspaceInput>
+  }
+
+  export type InviteLinkUpdateWithoutWorkspaceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user?: usersUpdateOneRequiredWithoutInviteLinksNestedInput
+  }
+
+  export type InviteLinkUncheckedUpdateWithoutWorkspaceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProjectUpsertWithWhereUniqueWithoutWorkspaceInput = {
@@ -36614,6 +38156,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsUpdateManyWithoutUsersNestedInput
     one_time_tokens?: one_time_tokensUpdateManyWithoutUsersNestedInput
     sessions?: sessionsUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUpdateManyWithoutUserNestedInput
     profiles?: profilesUpdateOneWithoutUsersNestedInput
   }
 
@@ -36657,6 +38200,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsUncheckedUpdateManyWithoutUsersNestedInput
     one_time_tokens?: one_time_tokensUncheckedUpdateManyWithoutUsersNestedInput
     sessions?: sessionsUncheckedUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUncheckedUpdateManyWithoutUserNestedInput
     profiles?: profilesUncheckedUpdateOneWithoutUsersNestedInput
   }
 
@@ -36712,6 +38256,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     description?: string | null
+    inviteLinks?: InviteLinkCreateNestedOneWithoutWorkspaceInput
     Project?: ProjectCreateNestedManyWithoutWorkspaceInput
     users: usersCreateNestedOneWithoutWorkspaceInput
   }
@@ -36723,6 +38268,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     description?: string | null
     userId: string
+    inviteLinks?: InviteLinkUncheckedCreateNestedOneWithoutWorkspaceInput
     Project?: ProjectUncheckedCreateNestedManyWithoutWorkspaceInput
   }
 
@@ -36773,6 +38319,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    inviteLinks?: InviteLinkUpdateOneWithoutWorkspaceNestedInput
     Project?: ProjectUpdateManyWithoutWorkspaceNestedInput
     users?: usersUpdateOneRequiredWithoutWorkspaceNestedInput
   }
@@ -36784,7 +38331,260 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
+    inviteLinks?: InviteLinkUncheckedUpdateOneWithoutWorkspaceNestedInput
     Project?: ProjectUncheckedUpdateManyWithoutWorkspaceNestedInput
+  }
+
+  export type usersCreateWithoutInviteLinksInput = {
+    instance_id?: string | null
+    id: string
+    aud?: string | null
+    role?: string | null
+    email?: string | null
+    encrypted_password?: string | null
+    email_confirmed_at?: Date | string | null
+    invited_at?: Date | string | null
+    confirmation_token?: string | null
+    confirmation_sent_at?: Date | string | null
+    recovery_token?: string | null
+    recovery_sent_at?: Date | string | null
+    email_change_token_new?: string | null
+    email_change?: string | null
+    email_change_sent_at?: Date | string | null
+    last_sign_in_at?: Date | string | null
+    raw_app_meta_data?: NullableJsonNullValueInput | InputJsonValue
+    raw_user_meta_data?: NullableJsonNullValueInput | InputJsonValue
+    is_super_admin?: boolean | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    phone?: string | null
+    phone_confirmed_at?: Date | string | null
+    phone_change?: string | null
+    phone_change_token?: string | null
+    phone_change_sent_at?: Date | string | null
+    confirmed_at?: Date | string | null
+    email_change_token_current?: string | null
+    email_change_confirm_status?: number | null
+    banned_until?: Date | string | null
+    reauthentication_token?: string | null
+    reauthentication_sent_at?: Date | string | null
+    is_sso_user?: boolean
+    deleted_at?: Date | string | null
+    is_anonymous?: boolean
+    identities?: identitiesCreateNestedManyWithoutUsersInput
+    mfa_factors?: mfa_factorsCreateNestedManyWithoutUsersInput
+    one_time_tokens?: one_time_tokensCreateNestedManyWithoutUsersInput
+    sessions?: sessionsCreateNestedManyWithoutUsersInput
+    Workspace?: WorkspaceCreateNestedManyWithoutUsersInput
+    profiles?: profilesCreateNestedOneWithoutUsersInput
+  }
+
+  export type usersUncheckedCreateWithoutInviteLinksInput = {
+    instance_id?: string | null
+    id: string
+    aud?: string | null
+    role?: string | null
+    email?: string | null
+    encrypted_password?: string | null
+    email_confirmed_at?: Date | string | null
+    invited_at?: Date | string | null
+    confirmation_token?: string | null
+    confirmation_sent_at?: Date | string | null
+    recovery_token?: string | null
+    recovery_sent_at?: Date | string | null
+    email_change_token_new?: string | null
+    email_change?: string | null
+    email_change_sent_at?: Date | string | null
+    last_sign_in_at?: Date | string | null
+    raw_app_meta_data?: NullableJsonNullValueInput | InputJsonValue
+    raw_user_meta_data?: NullableJsonNullValueInput | InputJsonValue
+    is_super_admin?: boolean | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    phone?: string | null
+    phone_confirmed_at?: Date | string | null
+    phone_change?: string | null
+    phone_change_token?: string | null
+    phone_change_sent_at?: Date | string | null
+    confirmed_at?: Date | string | null
+    email_change_token_current?: string | null
+    email_change_confirm_status?: number | null
+    banned_until?: Date | string | null
+    reauthentication_token?: string | null
+    reauthentication_sent_at?: Date | string | null
+    is_sso_user?: boolean
+    deleted_at?: Date | string | null
+    is_anonymous?: boolean
+    identities?: identitiesUncheckedCreateNestedManyWithoutUsersInput
+    mfa_factors?: mfa_factorsUncheckedCreateNestedManyWithoutUsersInput
+    one_time_tokens?: one_time_tokensUncheckedCreateNestedManyWithoutUsersInput
+    sessions?: sessionsUncheckedCreateNestedManyWithoutUsersInput
+    Workspace?: WorkspaceUncheckedCreateNestedManyWithoutUsersInput
+    profiles?: profilesUncheckedCreateNestedOneWithoutUsersInput
+  }
+
+  export type usersCreateOrConnectWithoutInviteLinksInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutInviteLinksInput, usersUncheckedCreateWithoutInviteLinksInput>
+  }
+
+  export type WorkspaceCreateWithoutInviteLinksInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    description?: string | null
+    Project?: ProjectCreateNestedManyWithoutWorkspaceInput
+    users: usersCreateNestedOneWithoutWorkspaceInput
+    WorkspaceMember?: WorkspaceMemberCreateNestedManyWithoutWorkspaceInput
+  }
+
+  export type WorkspaceUncheckedCreateWithoutInviteLinksInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    description?: string | null
+    userId: string
+    Project?: ProjectUncheckedCreateNestedManyWithoutWorkspaceInput
+    WorkspaceMember?: WorkspaceMemberUncheckedCreateNestedManyWithoutWorkspaceInput
+  }
+
+  export type WorkspaceCreateOrConnectWithoutInviteLinksInput = {
+    where: WorkspaceWhereUniqueInput
+    create: XOR<WorkspaceCreateWithoutInviteLinksInput, WorkspaceUncheckedCreateWithoutInviteLinksInput>
+  }
+
+  export type usersUpsertWithoutInviteLinksInput = {
+    update: XOR<usersUpdateWithoutInviteLinksInput, usersUncheckedUpdateWithoutInviteLinksInput>
+    create: XOR<usersCreateWithoutInviteLinksInput, usersUncheckedCreateWithoutInviteLinksInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutInviteLinksInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutInviteLinksInput, usersUncheckedUpdateWithoutInviteLinksInput>
+  }
+
+  export type usersUpdateWithoutInviteLinksInput = {
+    instance_id?: NullableStringFieldUpdateOperationsInput | string | null
+    id?: StringFieldUpdateOperationsInput | string
+    aud?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    encrypted_password?: NullableStringFieldUpdateOperationsInput | string | null
+    email_confirmed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    invited_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    confirmation_token?: NullableStringFieldUpdateOperationsInput | string | null
+    confirmation_sent_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recovery_token?: NullableStringFieldUpdateOperationsInput | string | null
+    recovery_sent_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email_change_token_new?: NullableStringFieldUpdateOperationsInput | string | null
+    email_change?: NullableStringFieldUpdateOperationsInput | string | null
+    email_change_sent_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    last_sign_in_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    raw_app_meta_data?: NullableJsonNullValueInput | InputJsonValue
+    raw_user_meta_data?: NullableJsonNullValueInput | InputJsonValue
+    is_super_admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_confirmed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phone_change?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_change_token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_change_sent_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    confirmed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email_change_token_current?: NullableStringFieldUpdateOperationsInput | string | null
+    email_change_confirm_status?: NullableIntFieldUpdateOperationsInput | number | null
+    banned_until?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reauthentication_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reauthentication_sent_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_sso_user?: BoolFieldUpdateOperationsInput | boolean
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_anonymous?: BoolFieldUpdateOperationsInput | boolean
+    identities?: identitiesUpdateManyWithoutUsersNestedInput
+    mfa_factors?: mfa_factorsUpdateManyWithoutUsersNestedInput
+    one_time_tokens?: one_time_tokensUpdateManyWithoutUsersNestedInput
+    sessions?: sessionsUpdateManyWithoutUsersNestedInput
+    Workspace?: WorkspaceUpdateManyWithoutUsersNestedInput
+    profiles?: profilesUpdateOneWithoutUsersNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutInviteLinksInput = {
+    instance_id?: NullableStringFieldUpdateOperationsInput | string | null
+    id?: StringFieldUpdateOperationsInput | string
+    aud?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    encrypted_password?: NullableStringFieldUpdateOperationsInput | string | null
+    email_confirmed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    invited_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    confirmation_token?: NullableStringFieldUpdateOperationsInput | string | null
+    confirmation_sent_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recovery_token?: NullableStringFieldUpdateOperationsInput | string | null
+    recovery_sent_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email_change_token_new?: NullableStringFieldUpdateOperationsInput | string | null
+    email_change?: NullableStringFieldUpdateOperationsInput | string | null
+    email_change_sent_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    last_sign_in_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    raw_app_meta_data?: NullableJsonNullValueInput | InputJsonValue
+    raw_user_meta_data?: NullableJsonNullValueInput | InputJsonValue
+    is_super_admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_confirmed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phone_change?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_change_token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_change_sent_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    confirmed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email_change_token_current?: NullableStringFieldUpdateOperationsInput | string | null
+    email_change_confirm_status?: NullableIntFieldUpdateOperationsInput | number | null
+    banned_until?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reauthentication_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reauthentication_sent_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_sso_user?: BoolFieldUpdateOperationsInput | boolean
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_anonymous?: BoolFieldUpdateOperationsInput | boolean
+    identities?: identitiesUncheckedUpdateManyWithoutUsersNestedInput
+    mfa_factors?: mfa_factorsUncheckedUpdateManyWithoutUsersNestedInput
+    one_time_tokens?: one_time_tokensUncheckedUpdateManyWithoutUsersNestedInput
+    sessions?: sessionsUncheckedUpdateManyWithoutUsersNestedInput
+    Workspace?: WorkspaceUncheckedUpdateManyWithoutUsersNestedInput
+    profiles?: profilesUncheckedUpdateOneWithoutUsersNestedInput
+  }
+
+  export type WorkspaceUpsertWithoutInviteLinksInput = {
+    update: XOR<WorkspaceUpdateWithoutInviteLinksInput, WorkspaceUncheckedUpdateWithoutInviteLinksInput>
+    create: XOR<WorkspaceCreateWithoutInviteLinksInput, WorkspaceUncheckedCreateWithoutInviteLinksInput>
+    where?: WorkspaceWhereInput
+  }
+
+  export type WorkspaceUpdateToOneWithWhereWithoutInviteLinksInput = {
+    where?: WorkspaceWhereInput
+    data: XOR<WorkspaceUpdateWithoutInviteLinksInput, WorkspaceUncheckedUpdateWithoutInviteLinksInput>
+  }
+
+  export type WorkspaceUpdateWithoutInviteLinksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    Project?: ProjectUpdateManyWithoutWorkspaceNestedInput
+    users?: usersUpdateOneRequiredWithoutWorkspaceNestedInput
+    WorkspaceMember?: WorkspaceMemberUpdateManyWithoutWorkspaceNestedInput
+  }
+
+  export type WorkspaceUncheckedUpdateWithoutInviteLinksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    Project?: ProjectUncheckedUpdateManyWithoutWorkspaceNestedInput
+    WorkspaceMember?: WorkspaceMemberUncheckedUpdateManyWithoutWorkspaceNestedInput
   }
 
   export type TaskAssignmentCreateWithoutProfilesInput = {
@@ -36873,6 +38673,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsCreateNestedManyWithoutUsersInput
     one_time_tokens?: one_time_tokensCreateNestedManyWithoutUsersInput
     sessions?: sessionsCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkCreateNestedManyWithoutUserInput
     Workspace?: WorkspaceCreateNestedManyWithoutUsersInput
   }
 
@@ -36916,6 +38717,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsUncheckedCreateNestedManyWithoutUsersInput
     one_time_tokens?: one_time_tokensUncheckedCreateNestedManyWithoutUsersInput
     sessions?: sessionsUncheckedCreateNestedManyWithoutUsersInput
+    inviteLinks?: InviteLinkUncheckedCreateNestedManyWithoutUserInput
     Workspace?: WorkspaceUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -37017,6 +38819,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsUpdateManyWithoutUsersNestedInput
     one_time_tokens?: one_time_tokensUpdateManyWithoutUsersNestedInput
     sessions?: sessionsUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUpdateManyWithoutUserNestedInput
     Workspace?: WorkspaceUpdateManyWithoutUsersNestedInput
   }
 
@@ -37060,6 +38863,7 @@ export namespace Prisma {
     mfa_factors?: mfa_factorsUncheckedUpdateManyWithoutUsersNestedInput
     one_time_tokens?: one_time_tokensUncheckedUpdateManyWithoutUsersNestedInput
     sessions?: sessionsUncheckedUpdateManyWithoutUsersNestedInput
+    inviteLinks?: InviteLinkUncheckedUpdateManyWithoutUserNestedInput
     Workspace?: WorkspaceUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -37370,6 +39174,11 @@ export namespace Prisma {
     tag?: string | null
   }
 
+  export type InviteLinkCreateManyUserInput = {
+    id?: string
+    workspaceId: string
+  }
+
   export type WorkspaceCreateManyUsersInput = {
     id?: string
     name: string
@@ -37525,12 +39334,28 @@ export namespace Prisma {
     tag?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type InviteLinkUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    Workspace?: WorkspaceUpdateOneRequiredWithoutInviteLinksNestedInput
+  }
+
+  export type InviteLinkUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    workspaceId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InviteLinkUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    workspaceId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type WorkspaceUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    inviteLinks?: InviteLinkUpdateOneWithoutWorkspaceNestedInput
     Project?: ProjectUpdateManyWithoutWorkspaceNestedInput
     WorkspaceMember?: WorkspaceMemberUpdateManyWithoutWorkspaceNestedInput
   }
@@ -37541,6 +39366,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    inviteLinks?: InviteLinkUncheckedUpdateOneWithoutWorkspaceNestedInput
     Project?: ProjectUncheckedUpdateManyWithoutWorkspaceNestedInput
     WorkspaceMember?: WorkspaceMemberUncheckedUpdateManyWithoutWorkspaceNestedInput
   }
