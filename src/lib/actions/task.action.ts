@@ -75,10 +75,27 @@ export async function updateTask(
     dueDate: Date;
   }
 ) {
-  await prisma.task.update({
-    where: { id },
-    data,
-  });
+  try {
+    return prisma.task.update({
+      where: { id },
+      data,
+    });
+  } catch (error) {
+    throw error;
+  } finally {
+    revalidatePath(`/projects/${id}`);
+  }
+}
 
-  revalidatePath(`/projects/${id}`);
+export async function deleteTask(id: string) {
+  try {
+    await prisma.task.delete({
+      where: { id },
+    });
+    return { success: true, message: "Task deleted successfully!" };
+  } catch (error) {
+    return { success: false, message: "Failed to delete task." };
+  } finally {
+    revalidatePath(`/projects/${id}`);
+  }
 }

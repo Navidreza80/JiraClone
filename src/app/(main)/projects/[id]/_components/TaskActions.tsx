@@ -2,17 +2,18 @@
 
 "use server";
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from "@/components/ui/popover";
 import {
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { MoreHorizontal } from "lucide-react";
 import { EditTaskDialog } from "./EditDialog";
+import { DeleteTaskDialog } from "./DeleteTask";
 
 const TaskActions = async ({ task }: { task: any }) => {
   return (
@@ -31,6 +32,7 @@ const TaskActions = async ({ task }: { task: any }) => {
       </PopoverTrigger>
       <PopoverContent className="w-[139px] text-sm rounded p-0">
         <EditTaskDialog task={task} />
+        <DeleteTaskDialog taskId={task.id} />
       </PopoverContent>
     </Popover>
   );
