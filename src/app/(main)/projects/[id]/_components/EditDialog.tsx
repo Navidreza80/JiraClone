@@ -1,18 +1,16 @@
 "use client";
 
-import * as React from "react";
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
-  DialogFooter,
+  DialogTrigger
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import EditTaskForm from "./EditTaskForm";
+import * as React from "react";
 import { Task } from "../../../../../../prisma/src/generated/prisma";
+import EditTaskForm from "./EditTaskForm";
 
 export function EditTaskDialog({ task }: { task: Task }) {
   const [open, setOpen] = React.useState(false);

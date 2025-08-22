@@ -8,6 +8,7 @@ import formatDate from "@/lib/helper/convert-date";
 import TasksList from "./_components/TasksList";
 import { Priority, task } from "../../../../../prisma/src/generated/prisma";
 import TaskActions from "./_components/TaskActions";
+import { getProjectById } from "@/lib/actions/projects.action";
 
 const tabs = [
   { text: "List", value: "list", icon: <List /> },
@@ -37,6 +38,8 @@ const ProjectTask = async ({ params, searchParams }: IProps) => {
     pageSearchParams?.priority,
     pageSearchParams?.status
   );
+  const project = await getProjectById(id);
+  if (!project) return;
   const data = rawData.map((item) => {
     const avatarUrl = item.assignment.map((item) => ({
       username: item.profiles.username || "U",
@@ -61,9 +64,9 @@ const ProjectTask = async ({ params, searchParams }: IProps) => {
       </h1>
       <div className="w-full flex gap-2 items-center pt-3">
         <span className="w-5 h-5 rounded bg-button text-white flex items-center justify-center">
-          U
+          {project.name.slice(0, 1).toUpperCase()}
         </span>
-        <p className="font-bold text-xl">My bim bam boom project</p>
+        <p className="font-bold text-xl">{project.name}</p>
       </div>
       <div className="w-full mt-4">
         <Tabs defaultValue="list" className="w-full relative">
