@@ -13,14 +13,14 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import User from "./SVGs/User";
+import User from "./svg/User";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "./ui/collapsible";
-import Rocket from "./SVGs/Rocket";
-import Members from "./SVGs/Members";
+import Rocket from "./svg/Rocket";
+import Members from "./svg/Members";
 
 const data = {
   navMain: [

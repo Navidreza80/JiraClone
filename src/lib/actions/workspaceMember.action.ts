@@ -16,7 +16,7 @@ export const addMember = async (
     return prisma.workspaceMember.create({
       data: {
         userId: user.id,
-        workspaceId: workspaceId,
+        workspaceId,
         role: role,
       },
     });

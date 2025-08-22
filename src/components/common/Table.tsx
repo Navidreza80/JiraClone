@@ -24,7 +24,7 @@ const ReusableTable: React.FC<ReusableTableProps> = ({ columns, data }) => {
             {columns.map((col) => (
               <th
                 key={col.key}
-                className="px-4 py-1 text-left text-[12px] font-semibold text-gray-700"
+                className="px-4 py-1 text-left text-[12px] font-semibold text-gray-700 whitespace-nowrap"
               >
                 {col.title}
               </th>
@@ -35,7 +35,7 @@ const ReusableTable: React.FC<ReusableTableProps> = ({ columns, data }) => {
           {data.map((row, index) => (
             <tr key={index} className="hover:bg-gray-50">
               {columns.map((col) => (
-                <td key={col.key} className="px-4 py-2 font-normal text-[14px]">
+                <td key={col.key} className="px-4 py-2 font-normal text-[14px] whitespace-nowrap">
                   {row[col.key]}
                 </td>
               ))}
