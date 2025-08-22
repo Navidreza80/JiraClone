@@ -342,18 +342,23 @@ model Project {
   updatedAt   DateTime  @updatedAt
   workspaceId String
   Workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  tasks       Task[]
 
   @@schema("public")
 }
 
 model Task {
-  id          String   @id
+  id          String           @id @default(uuid())
   title       String
   description String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
   projectId   String
-  status      task     @default(idea)
+  project     Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  status      task             @default(idea)
+  priority    Priority         @default(MEDIUM)
+  dueDate     DateTime         @default(now())
+  assignment  TaskAssignment[]
 
   @@schema("public")
 }
@@ -361,6 +366,7 @@ model Task {
 model TaskAssignment {
   id         String   @id
   taskId     String
+  task       Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
   userId     String   @db.Uuid
   assignedAt DateTime @default(now())
   profiles   profiles @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -463,6 +469,14 @@ enum task {
   done
   idea
   in_review   @map("in-review")
+
+  @@schema("public")
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
 
   @@schema("public")
 }

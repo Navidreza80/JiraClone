@@ -17,7 +17,7 @@ const Members = async ({ searchParams }: ProjectsProps) => {
       </h1>
       <SearchMembersInput />
       <h1 className="mt-10 text-sm w-full">People you work with</h1>
-      <div className="w-full mt-5 flex ">
+      <div className="w-full mt-5 flex gap-4">
         {members && members.length > 0 ? (
           members?.map((item) => (
             <div

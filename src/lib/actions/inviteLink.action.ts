@@ -1,3 +1,5 @@
+"use server";
+
 import { PrismaClient } from "../../../prisma/src/generated/prisma";
 import { getServerCookie } from "../helper/server-cookie";
 import { getUser } from "./getUser.action";
@@ -28,5 +30,16 @@ export async function createInviteLink() {
     return { link: data, message: "Invite link created successfully!" };
   } catch {
     return { message: "Failed to create invite link." };
+  }
+}
+
+export async function decodeInviteLink(id: string) {
+  try {
+    return prisma.inviteLink.findUnique({
+      where: { id },
+      include: { Workspace: true, user: true },
+    });
+  } catch (error) {
+    throw error;
   }
 }

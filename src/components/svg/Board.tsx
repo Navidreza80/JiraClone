@@ -1,0 +1,13 @@
+const Board = () => {
+  return (
+    <svg fill="none" role="presentation">
+      <path
+        fill="currentcolor"
+        fillRule="evenodd"
+        d="M2 3.5a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h2.833v-9zm4.333 0v9h3.334v-9zm4.834 0v9H14a.5.5 0 0 0 .5-.5V4a.5.5 0 0 0-.5-.5zM0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2z"
+        clipRule="evenodd"
+      ></path>
+    </svg>
+  );
+};
+export default Board;
