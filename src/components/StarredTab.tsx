@@ -3,7 +3,8 @@ import { TabsContent } from "./ui/tabs";
 const StarredTab = () => {
   return (
     <TabsContent value="starred">
-      <div className="w-full pl-1 pr-3 py-2 flex items-center relative hover:bg-gray-100 rounded">
+      Coming soon...
+      {/* <div className="w-full pl-1 pr-3 py-2 flex items-center relative hover:bg-gray-100 rounded">
         <span className="w-6 h-6 text-yellow-300 mx-3 cursor-pointer hover:bg-gray-200 rounded p-3 relative flex items-center justify-center">
           <svg
             fill="none"
@@ -34,8 +35,8 @@ const StarredTab = () => {
         </div>
         <span className="absolute text-xs font-normal text-muted-foreground right-6">
           To Do
-        </span>
-      </div>
+        </span> */}
+      {/* </div> */}
     </TabsContent>
   );
 };

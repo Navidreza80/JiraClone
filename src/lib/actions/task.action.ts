@@ -1,14 +1,14 @@
 "use server";
 
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag, unstable_cache } from "next/cache";
 import {
   Priority,
   PrismaClient,
   task,
 } from "../../../prisma/src/generated/prisma";
 import { parseDate, utcDayRange } from "../helper/convert-date";
-import { unstable_cache } from "next/cache";
 import { assignTask } from "./taskAssignment.action";
+import { getUser } from "./getUser.action";
 
 const prisma = new PrismaClient();
 
@@ -87,7 +87,7 @@ export async function updateTask(
   } catch (error) {
     throw error;
   } finally {
-    revalidateTag("tasks")
+    revalidateTag("tasks");
   }
 }
 
@@ -100,7 +100,7 @@ export async function deleteTask(id: string) {
   } catch {
     return { success: false, message: "Failed to delete task." };
   } finally {
-    revalidateTag("tasks")
+    revalidateTag("tasks");
   }
 }
 
@@ -123,7 +123,7 @@ export async function createTask(data: {
         status: data.status,
       },
     });
-    
+
     if (data.assignment) {
       await Promise.all(data.assignment.map((item) => assignTask(id, item)));
     }
@@ -132,5 +132,20 @@ export async function createTask(data: {
     return { success: true, message: "Task created successfully!" };
   } catch {
     return { success: false, message: "Failed to create task." };
+  }
+}
+
+export async function getAssignedTask() {
+  const user = await getUser();
+  if (!user) return;
+  try {
+    return prisma.task.findMany({
+      where: {
+        assignment: { some: { userId: user.id } },
+      },
+      include: { project: true },
+    });
+  } catch (error) {
+    throw error;
   }
 }
