@@ -3,13 +3,25 @@ import Date from "@/components/svg/Date";
 import List from "@/components/svg/List";
 import { AvatarCircles } from "@/components/ui/avatar-circles";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getProjectById } from "@/lib/actions/projects.action";
 import { getTasks } from "@/lib/actions/task.action";
 import formatDate from "@/lib/helper/convert-date";
-import TasksList from "./_components/TasksList";
 import { Priority, task } from "../../../../../prisma/src/generated/prisma";
 import TaskActions from "./_components/TaskActions";
-import { getProjectById } from "@/lib/actions/projects.action";
 import KanbanBoard from "./_components/TaskBoard";
+import TasksList from "./_components/TasksList";
+import dynamic from "next/dynamic";
+import SearchTasksInput from "@/components/SearchTasks";
+import TaskCalendar from "./_components/TaskCalendar";
+const FiltersPopover = dynamic(() => import("./_components/FilterTask"), {
+  ssr: true,
+  loading: () => <p>Loading filters...</p>,
+});
+
+const CreateTaskDialog = dynamic(() => import("./_components/CreateTask"), {
+  ssr: true,
+  loading: () => <p>Loading...</p>,
+});
 
 const tabs = [
   { text: "List", value: "list", icon: <List /> },
@@ -83,8 +95,16 @@ const ProjectTask = async ({ params, searchParams }: IProps) => {
             ))}
           </TabsList>
           <div className="w-full absolute border top-[37px]" />
+          <div className="max-w-min flex items-center gap-2 my-3 justify-between">
+            <div className="flex w-full gap-2 items-center">
+              <SearchTasksInput />
+              <FiltersPopover />
+            </div>
+            <CreateTaskDialog />
+          </div>
           <TasksList data={data} />
           <KanbanBoard initialTasks={rawData} />
+          <TaskCalendar tasks={rawData} />
         </Tabs>
       </div>
     </div>

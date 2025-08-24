@@ -1,0 +1,7 @@
+.rbc-month-row {
+  overflow: visible !important;
+  max-height: none !important;
+}
+.rbc-row-content {
+  max-height: none !important;
+}

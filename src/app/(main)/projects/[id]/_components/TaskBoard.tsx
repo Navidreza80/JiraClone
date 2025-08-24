@@ -8,34 +8,36 @@ import {
   STATUS_MAP,
 } from "@/constants";
 import { updateTask } from "@/lib/actions/task.action";
-import { KanbanStatus } from "@/types/indes";
+import { KanbanStatus, KanTaskType } from "@/types/indes";
 import { DragDropContext, DropResult } from "@hello-pangea/dnd";
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Task } from "../../../../../../prisma/src/generated/prisma";
 import Column from "./BoardColumn";
 
 export default function KanbanBoard({
   initialTasks,
 }: {
-  initialTasks: Task[];
+  initialTasks: KanTaskType[];
 }) {
-  const [tasks, setTasks] = useState<Task[]>(initialTasks);
-  const [query, setQuery] = useState("");
+  const [tasks, setTasks] = useState<KanTaskType[]>(initialTasks);
 
-  const columns = useMemo(() => {
-    const byCol: Record<KanbanStatus, Task[]> = {
-      IDEA: [],
-      TO_DO: [],
-      IN_PROGRESS: [],
-      IN_REVIEW: [],
-      DONE: [],
-    };
-    for (const t of tasks) {
-      byCol[REVERSE_STATUS_MAP[t.status]].push(t);
-    }
-    return byCol;
-  }, [tasks]);
+  useEffect(() => {
+    setTasks(initialTasks);
+  }, [initialTasks]);
+
+  const byCol: Record<KanbanStatus, KanTaskType[]> = {
+    IDEA: [],
+    TO_DO: [],
+    IN_PROGRESS: [],
+    IN_REVIEW: [],
+    DONE: [],
+  };
+
+  for (const t of tasks) {
+    byCol[REVERSE_STATUS_MAP[t.status]].push(t);
+  }
+
+  const columns = byCol;
 
   async function onDragEnd(result: DropResult) {
     const { source, destination } = result;
@@ -87,12 +89,7 @@ export default function KanbanBoard({
           <div className="flex gap-4 w-[1650px] pb-20">
             {COLUMN_ORDER.map((c) => (
               <div key={c}>
-                <Column
-                  id={c}
-                  title={COLUMN_TITLES[c]}
-                  tasks={columns[c]}
-                  filter={query}
-                />
+                <Column id={c} title={COLUMN_TITLES[c]} tasks={columns[c]} />
               </div>
             ))}
           </div>
