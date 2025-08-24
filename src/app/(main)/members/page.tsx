@@ -6,6 +6,13 @@ interface ProjectsProps {
   searchParams?: { search?: string };
 }
 
+export async function generateMetadata() {
+  return {
+    title: "Members",
+    description: "Find members of your project here.",
+  };
+}
+
 const Members = async ({ searchParams }: ProjectsProps) => {
   const params = await searchParams;
   const members = await findWorkspaceMembers(params?.search);

@@ -1,6 +1,13 @@
 import { LoginForm } from "@/components/login-form";
 
-export default function LoginPage() {
+export async function generateMetadata() {
+  return {
+    title: "Jira - Login",
+    description: "Login to your account to continue.",
+  };
+}
+
+export default async function LoginPage() {
   return (
     <div className="flex flex-col gap-4 p-6 md:p-10">
       <div className="flex justify-center gap-2 md:justify-start">
