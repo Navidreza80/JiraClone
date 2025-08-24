@@ -14,7 +14,6 @@ interface AvatarCirclesProps {
 }
 
 export const AvatarCircles = ({
-  numPeople,
   className,
   avatarUrls,
 }: AvatarCirclesProps) => {
@@ -23,21 +22,13 @@ export const AvatarCircles = ({
       {avatarUrls.map((url, index) => (
         <Tooltip key={index}>
           <TooltipTrigger>
-            <div className="h-10 w-10 rounded-full border-2 bg-button text-white text-lg font-bold flex items-center justify-center">
+            <div className="h-6 w-6 rounded-full border-2 bg-button text-white text-[11px] font-medium flex items-center justify-center">
               {url.username.slice(0, 1).toUpperCase() || "U"}
             </div>
           </TooltipTrigger>
           <TooltipContent>{url.username || "Username"}</TooltipContent>
         </Tooltip>
       ))}
-      {(numPeople ?? 0) > 0 && (
-        <a
-          className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-black text-center text-xs font-medium text-white hover:bg-gray-600 dark:border-gray-800 dark:bg-white dark:text-black"
-          href=""
-        >
-          +{numPeople}
-        </a>
-      )}
     </div>
   );
 };

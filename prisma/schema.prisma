@@ -364,7 +364,7 @@ model Task {
 }
 
 model TaskAssignment {
-  id         String   @id
+  id         String   @id @default(uuid())
   taskId     String
   task       Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
   userId     String   @db.Uuid

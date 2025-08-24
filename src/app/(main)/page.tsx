@@ -10,6 +10,7 @@ import { getProjects } from "@/lib/actions/projects.action";
 export default async function Page() {
   const projects = await getProjects();
   if (!projects || !(projects.length > 0)) return <EmptyProjects />;
+
   return (
     <div className="flex flex-1 flex-wrap">
       <h1 className="w-full text-2xl font-semibold text-foreground leading-0 pb-12 border-b">

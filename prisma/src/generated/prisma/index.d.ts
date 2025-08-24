@@ -32818,14 +32818,14 @@ export namespace Prisma {
   }
 
   export type TaskAssignmentCreateInput = {
-    id: string
+    id?: string
     assignedAt?: Date | string
     task: TaskCreateNestedOneWithoutAssignmentInput
     profiles: profilesCreateNestedOneWithoutTaskAssignmentInput
   }
 
   export type TaskAssignmentUncheckedCreateInput = {
-    id: string
+    id?: string
     taskId: string
     userId: string
     assignedAt?: Date | string
@@ -32846,7 +32846,7 @@ export namespace Prisma {
   }
 
   export type TaskAssignmentCreateManyInput = {
-    id: string
+    id?: string
     taskId: string
     userId: string
     assignedAt?: Date | string
@@ -38409,13 +38409,13 @@ export namespace Prisma {
   }
 
   export type TaskAssignmentCreateWithoutTaskInput = {
-    id: string
+    id?: string
     assignedAt?: Date | string
     profiles: profilesCreateNestedOneWithoutTaskAssignmentInput
   }
 
   export type TaskAssignmentUncheckedCreateWithoutTaskInput = {
-    id: string
+    id?: string
     userId: string
     assignedAt?: Date | string
   }
@@ -39285,13 +39285,13 @@ export namespace Prisma {
   }
 
   export type TaskAssignmentCreateWithoutProfilesInput = {
-    id: string
+    id?: string
     assignedAt?: Date | string
     task: TaskCreateNestedOneWithoutAssignmentInput
   }
 
   export type TaskAssignmentUncheckedCreateWithoutProfilesInput = {
-    id: string
+    id?: string
     taskId: string
     assignedAt?: Date | string
   }
@@ -40113,7 +40113,7 @@ export namespace Prisma {
   }
 
   export type TaskAssignmentCreateManyTaskInput = {
-    id: string
+    id?: string
     userId: string
     assignedAt?: Date | string
   }
@@ -40199,7 +40199,7 @@ export namespace Prisma {
   }
 
   export type TaskAssignmentCreateManyProfilesInput = {
-    id: string
+    id?: string
     taskId: string
     assignedAt?: Date | string
   }

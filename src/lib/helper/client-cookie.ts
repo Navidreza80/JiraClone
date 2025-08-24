@@ -14,6 +14,7 @@ export function getClientCookie(name: string) {
   if (typeof document === "undefined") return null;
   const nameEQ = name + "=";
   const ca = typeof window != "undefined" && document.cookie.split(";");
+  if (!ca) return;
   const cookieValue = ca
     .map((c) => c.trim())
     .find((c) => c.indexOf(nameEQ) === 0);
