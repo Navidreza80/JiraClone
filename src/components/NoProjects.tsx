@@ -29,7 +29,7 @@ export async function EmptyProjects() {
         </p>
 
         <Link href={"/create-project"}>
-        <button className="button">
+        <button className="button mx-auto">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="-ml-1 mr-2 h-5 w-5"

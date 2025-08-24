@@ -9,6 +9,7 @@ import TasksList from "./_components/TasksList";
 import { Priority, task } from "../../../../../prisma/src/generated/prisma";
 import TaskActions from "./_components/TaskActions";
 import { getProjectById } from "@/lib/actions/projects.action";
+import KanbanBoard from "./_components/TaskBoard";
 
 const tabs = [
   { text: "List", value: "list", icon: <List /> },
@@ -83,6 +84,7 @@ const ProjectTask = async ({ params, searchParams }: IProps) => {
           </TabsList>
           <div className="w-full absolute border top-[37px]" />
           <TasksList data={data} />
+          <KanbanBoard initialTasks={rawData} />
         </Tabs>
       </div>
     </div>

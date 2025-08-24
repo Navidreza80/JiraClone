@@ -1,8 +1,7 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +11,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -22,7 +20,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -30,26 +32,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Textarea } from "@/components/ui/textarea";
+import { createTask } from "@/lib/actions/task.action";
+import { findWorkspaceMembers } from "@/lib/actions/workspaceMember.action";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon, Loader } from "lucide-react";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 import {
   profiles,
   WorkspaceMember,
 } from "../../../../../../prisma/src/generated/prisma";
-import { findWorkspaceMembers } from "@/lib/actions/workspaceMember.action";
-
-const mockUsers = [
-  { id: "u1", name: "Alice" },
-  { id: "u2", name: "Bob" },
-  { id: "u3", name: "Charlie" },
-];
 
 const priorities = ["HIGH", "MEDIUM", "LOW"] as const;
 const statuses = ["in_progress", "done", "in_review", "todo", "idea"] as const;
@@ -68,6 +65,7 @@ interface members extends WorkspaceMember {
 }
 
 export default function CreateTaskDialog() {
+  const { id } = useParams();
   const [open, setOpen] = useState(false);
   const [workspaceMembers, setWorkspaceMembers] = useState<
     members[] | null | undefined
@@ -98,7 +96,14 @@ export default function CreateTaskDialog() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    
+    console.log(values);
+    if (!id) {
+      toast.error("Failed to find project.");
+      return;
+    }
+    const response = await createTask({ ...values, projectId: id.toString() });
+    if (response.success) toast.success(response.message);
+    toast.error(response.message);
     setOpen(false);
   }
 
