@@ -6,7 +6,13 @@ import { EmptyProjects } from "@/components/NoProjects";
 import StarredTab from "@/components/StarredTab";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getProjects } from "@/lib/actions/projects.action";
-
+import Link from "next/link";
+export async function generateMetadata() {
+  return {
+    title: "For you",
+    description: "Explore recent projects and tasks!",
+  };
+}
 export default async function Page() {
   const projects = await getProjects();
   if (!projects || !(projects.length > 0)) return <EmptyProjects />;
@@ -18,9 +24,12 @@ export default async function Page() {
       </h1>
       <div className="py-4 flex justify-between items-center w-full">
         <span className="text-sm font-semibold">Recent projects</span>
-        <span className="text-sm text-blue-500 hover:underline cursor-pointer">
+        <Link
+          href={"/projects"}
+          className="text-sm text-blue-500 hover:underline cursor-pointer"
+        >
           View all projects
-        </span>
+        </Link>
       </div>
       <div className="flex gap-4 w-full flex-wrap">
         {projects.map((project) => (

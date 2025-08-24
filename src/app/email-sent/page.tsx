@@ -1,6 +1,13 @@
 import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
 
+export async function generateMetadata() {
+  return {
+    title: "Check email",
+    description: "Check your mail to verify your email address.",
+  };
+}
+
 export default async function EmailSentPage() {
   const supabase = await createClient();
 
