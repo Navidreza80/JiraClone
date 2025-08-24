@@ -1,9 +1,24 @@
 /* eslint-disable */
 
-import ReusableTable from "@/components/common/Table";
-import SearchTasksInput from "@/components/SearchTasks";
-import { TabsContent } from "@/components/ui/tabs";
-import FiltersPopover from "./FilterTask";
+import dynamic from "next/dynamic"
+import SearchTasksInput from "@/components/SearchTasks"
+import { TabsContent } from "@/components/ui/tabs"
+
+// Lazy imports
+const ReusableTable = dynamic(() => import("@/components/common/Table"), {
+  ssr: true,
+  loading: () => <p>Loading table...</p>,
+})
+
+const FiltersPopover = dynamic(() => import("./FilterTask"), {
+  ssr: true,
+  loading: () => <p>Loading filters...</p>,
+})
+
+const CreateTaskDialog = dynamic(() => import("./CreateTask"), {
+  ssr: true,
+  loading: () => <p>Loading...</p>,
+})
 
 const columns = [
   { title: "Title", key: "title" },
@@ -13,7 +28,7 @@ const columns = [
   { title: "Priority", key: "priority" },
   { title: "Assignee", key: "assignee" },
   { title: "Actions", key: "actions" },
-];
+]
 
 const TasksList = async ({ data }: { data: any }) => {
   return (
@@ -24,11 +39,12 @@ const TasksList = async ({ data }: { data: any }) => {
             <SearchTasksInput />
             <FiltersPopover />
           </div>
-          <button className="button">Create task</button>
+          <CreateTaskDialog />
         </div>
         <ReusableTable data={data} columns={columns} />
       </div>
     </TabsContent>
-  );
-};
-export default TasksList;
+  )
+}
+
+export default TasksList
