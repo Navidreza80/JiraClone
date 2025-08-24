@@ -1,8 +1,4 @@
-import {
-  profiles,
-  Task,
-  TaskAssignment,
-} from "../../prisma/src/generated/prisma";
+import { profiles, Task } from "../../prisma/src/generated/prisma";
 
 export type KanbanStatus =
   | "IDEA"
@@ -11,12 +7,8 @@ export type KanbanStatus =
   | "IN_REVIEW"
   | "DONE";
 
-interface AssignmentType extends TaskAssignment {
-  profiles: profiles;
-}
-
 export interface KanTaskType extends Task {
-  assignment: AssignmentType[];
+  assignment: { profiles: profiles }[];
 }
 
 export interface TaskEvent {

@@ -8,7 +8,7 @@ import {
   STATUS_MAP,
 } from "@/constants";
 import { updateTask } from "@/lib/actions/task.action";
-import { KanbanStatus, KanTaskType } from "@/types/indes";
+import { KanbanStatus, KanTaskType } from "@/types";
 import { DragDropContext, DropResult } from "@hello-pangea/dnd";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";

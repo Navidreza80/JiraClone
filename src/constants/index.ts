@@ -1,4 +1,4 @@
-import { KanbanStatus } from "@/types/indes";
+import { KanbanStatus } from "@/types";
 import { task } from "../../prisma/src/generated/prisma";
 
 export const API_BASE_URL = "";

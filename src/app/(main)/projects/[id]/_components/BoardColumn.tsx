@@ -1,7 +1,7 @@
 import { AvatarCircles } from "@/components/ui/avatar-circles";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { GetPriorityIcon } from "@/lib/helper/priority-icon";
-import { KanTaskType } from "@/types/indes";
+import { KanTaskType } from "@/types";
 import { Draggable, Droppable } from "@hello-pangea/dnd";
 
 export default function Column({

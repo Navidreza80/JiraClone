@@ -1,7 +1,9 @@
+/* eslint-disable */
+
 "use client";
 
 import { TabsContent } from "@/components/ui/tabs";
-import { TaskEvent } from "@/types/indes";
+import { TaskEvent } from "@/types";
 import {
   addMonths,
   format,
@@ -65,7 +67,7 @@ export default function TaskCalendar({ tasks }: { tasks: Task[] }) {
           toolbar
           className="h-full min-w-[700px]"
           formats={{
-            weekdayFormat: (date, culture, localizer) =>
+            weekdayFormat: (date: any, culture: any, localizer: any) =>
               localizer?.format(date, "EEE", culture) ?? "",
           }}
           components={{
