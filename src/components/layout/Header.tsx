@@ -9,6 +9,7 @@ import { SidebarTrigger } from "../ui/sidebar";
 import { Tooltip, TooltipContent } from "../ui/tooltip";
 import UserMenuItems from "../UserMenuItems";
 import WorkspacesMenuItems from "../WorkspacesMenuItems";
+import Link from "next/link";
 
 const Header = async () => {
   const user = await getUser();
@@ -30,9 +31,10 @@ const Header = async () => {
       <SearchForm />
 
       <div className="flex gap-2 h-8 items-center">
-        <button className="h-full button gap-2">
-          {<Plus size={23} />} Create
-        </button>
+        <Link href="/create-project" className="h-full button gap-2">
+          <Plus size={23} /> Create
+        </Link>
+
         <Popover>
           <PopoverTrigger>
             <div>
