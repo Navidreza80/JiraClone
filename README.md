@@ -37,6 +37,16 @@ JiraClone is a task management application inspired by Jira, built using the lat
 
 ---
 
+<img width="1919" height="923" alt="Screenshot 2025-09-06 150724" src="https://github.com/user-attachments/assets/d69c507d-ed7d-4e70-ad18-cdbe61f81c9e" />
+*Auhtentication*
+<img width="1919" height="925" alt="Screenshot 2025-09-06 150817" src="https://github.com/user-attachments/assets/bedfa54b-ec5f-44a2-9f6a-74e1c35724f8" />
+*Homepage*
+<img width="1918" height="926" alt="Screenshot 2025-09-06 150911" src="https://github.com/user-attachments/assets/5193074a-e980-4363-8a91-5e2e31a9908f" />
+*Projects*
+<img width="1918" height="924" alt="Screenshot 2025-09-06 153827" src="https://github.com/user-attachments/assets/fb70c0d3-eef7-43dc-9c55-a925bc07f1d4" />
+*Projects tasks*
+---
+
 ## Tech Stack
 
 | Layer          | Technologies                         |
