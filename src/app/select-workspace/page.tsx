@@ -6,7 +6,12 @@ import { Plus } from "lucide-react";
 import Head from "next/head";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-
+export async function generateMetadata() {
+  return {
+    title: "Select workspace",
+    description: "Select your workspace to continue",
+  };
+}
 export default async function WorkspaceSelection() {
   const workspaces = await getWorkspaces();
   const handleWorkspaceSelect = async (id: string) => {
@@ -33,7 +38,11 @@ export default async function WorkspaceSelection() {
 
         <div className="space-y-4">
           {workspaces.map((workspace) => (
-            <SelectWorkspaceCard key={workspace.id} workspace={workspace} handleWorkspaceSelect={handleWorkspaceSelect} />
+            <SelectWorkspaceCard
+              key={workspace.id}
+              workspace={workspace}
+              handleWorkspaceSelect={handleWorkspaceSelect}
+            />
           ))}
           {!(workspaces.length > 0) && <EmptyWorkspace />}
         </div>

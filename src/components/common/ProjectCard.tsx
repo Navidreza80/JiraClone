@@ -1,5 +1,6 @@
 import { getTasks } from "@/lib/actions/task.action";
 import { Project } from "../../../prisma/src/generated/prisma";
+import Link from "next/link";
 
 const ProjectCard = async ({ project }: { project: Project }) => {
   const openTasks = await getTasks(
@@ -35,12 +36,22 @@ const ProjectCard = async ({ project }: { project: Project }) => {
         </div>
         <span className="text-[10px] text-muted-foreground">Quick links</span>
         <span className="text-[11px] font-medium w-full flex justify-between">
-          My open work items
-          <span className="bg-muted px-3 rounded-full">{openTasks ? openTasks.length : 0}</span>
+          <Link href={`/projects/${project.id}?status=in_progress`}>
+            My open work items
+          </Link>
+
+          <span className="bg-muted px-3 rounded-full">
+            {openTasks ? openTasks.length : 0}
+          </span>
         </span>
         <span className="text-[11px] font-medium w-full flex justify-between">
-          Done work items
-          <span className="bg-muted px-3 rounded-full">{doneTasks ? doneTasks.length : 0}</span>
+          <Link href={`/projects/${project.id}?status=done`}>
+            Done work items
+          </Link>
+
+          <span className="bg-muted px-3 rounded-full">
+            {doneTasks ? doneTasks.length : 0}
+          </span>
         </span>
       </div>
     </div>

@@ -41,6 +41,15 @@ interface IProps {
   };
 }
 
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const { id } = await params;
+  const project = await getProjectById(id);
+  return {
+    title: project?.name,
+    ...(project?.description && { description: project.description }),
+  };
+}
+
 const ProjectTask = async ({ params, searchParams }: IProps) => {
   const pageSearchParams = await searchParams;
   const { id } = await params;

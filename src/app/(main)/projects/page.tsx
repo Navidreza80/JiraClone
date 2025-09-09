@@ -17,6 +17,13 @@ interface ProjectsProps {
   searchParams?: { search?: string };
 }
 
+export async function generateMetadata() {
+  return {
+    title: "Projects",
+    description: "View all of your projects here.",
+  };
+}
+
 const Projects = async ({ searchParams }: ProjectsProps) => {
   const params = await searchParams;
   const rawData = await getProjects(params?.search);

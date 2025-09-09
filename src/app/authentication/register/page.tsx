@@ -1,6 +1,13 @@
 import { RegisterForm } from "@/components/register-form";
 
-export default function RegisterPage() {
+export async function generateMetadata() {
+  return {
+    title: "Jira - Register",
+    description: "Create new account.",
+  };
+}
+
+export default async function RegisterPage() {
   return (
     <div className="flex flex-col gap-4 p-6 md:pt-10">
       <div className="flex justify-center gap-2 md:justify-start">
